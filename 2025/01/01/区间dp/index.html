@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wbwblog.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="区间DP  是一类子问题从短到长，而不是从左到右的动态规划问题。  状态 一般是：$dp_{i,j}$ 表示将区间 $[i,j]$ 的元素合并、拆分的最值、方案数。 转移 1234567for (int len &#x3D; 2; len &lt;&#x3D; n; len++)&#x2F;&#x2F;这问题	for (int i &#x3D; 1; i + len - 1 &lt;&#x3D; n; i++)&#x2F;&#x2F;状态	&#123;		int j &#x3D; i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区间dp">
+<meta property="og:url" content="https://wbwblog.github.io/2025/01/01/%E5%8C%BA%E9%97%B4dp/index.html">
+<meta property="og:site_name" content="wbw121124&#39;s blog">
+<meta property="og:description" content="区间DP  是一类子问题从短到长，而不是从左到右的动态规划问题。  状态 一般是：$dp_{i,j}$ 表示将区间 $[i,j]$ 的元素合并、拆分的最值、方案数。 转移 1234567for (int len &#x3D; 2; len &lt;&#x3D; n; len++)&#x2F;&#x2F;这问题	for (int i &#x3D; 1; i + len - 1 &lt;&#x3D; n; i++)&#x2F;&#x2F;状态	&#123;		int j &#x3D; i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-02T12:47:28.000Z">
+<meta property="article:author" content="wbw121124">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="区间dp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wbwblog.github.io/2025/01/01/%E5%8C%BA%E9%97%B4dp/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wbwblog.github.io/2025/01/01/%E5%8C%BA%E9%97%B4dp/","path":"2025/01/01/区间dp/","title":"区间dp"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>区间dp | wbw121124's blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/comments.js" defer></script><script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.5.0/mermaid.min.js","integrity":"sha256-2obLuIPcceEhkE3G09G33hBdmE55ivVcZUlcKcGNHjU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.5.0/wavedrom.min.js","integrity":"sha256-INLAoJc6quTNfiMWkGZniYO2cxE8mHpddnLow1m6RFs="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.5.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js" defer></script>
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+<script class="next-config" data-name="subtitle_typing" type="application/json">{"enable":true,"typing_speed":500,"deleting_speed":100,"pause_before_delete":2000,"pause_before_type":500,"subtitles":["Welcome to my blog","Enjoy your stay","Have a great day!"]}</script>
+    <script defer src="/lib/subtitle_typing.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <!-- CSS
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+
+  JS 
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\$', right: '\$', display: false },
+          { left: '\$', right: '\$', display: true }
+        ],
+        throwOnError: false
+      });
+    });
+  </script> -->
+
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage"  class="use-motion" >
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wbw121124's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+      
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">区间DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81"><span class="nav-number">1.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB"><span class="nav-number">1.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P1775"><span class="nav-number">1.3.1.</span> <span class="nav-text">洛谷P1775</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-2"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P3146"><span class="nav-number">1.3.2.</span> <span class="nav-text">洛谷P3146</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-3"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-3"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-2"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P1622"><span class="nav-number">1.3.3.</span> <span class="nav-text">洛谷P1622</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-4"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-4"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-3"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P2890"><span class="nav-number">1.3.4.</span> <span class="nav-text">洛谷P2890</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-5"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-5"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-4"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">类似题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P2858"><span class="nav-number">1.3.5.</span> <span class="nav-text">洛谷P2858</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-6"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-6"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-5"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P4170"><span class="nav-number">1.3.6.</span> <span class="nav-text">洛谷P4170</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-7"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-7"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-6"><span class="nav-number">1.3.6.3.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P3205"><span class="nav-number">1.3.7.</span> <span class="nav-text">洛谷P3205</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-8"><span class="nav-number">1.3.7.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB-8"><span class="nav-number">1.3.7.2.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-7"><span class="nav-number">1.3.7.3.</span> <span class="nav-text">答案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wbw121124"
+      src="https://cdn.luogu.com.cn/upload/usericon/792595.png">
+  <p class="site-author-name" itemprop="name">wbw121124</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wbw121124" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wbw121124" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/wbw121124" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;wbw121124" rel="noopener me" target="_blank">CSDN</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/01/01/%E5%8C%BA%E9%97%B4dp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/792595.png">
+      <meta itemprop="name" content="wbw121124">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wbw121124's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="区间dp | wbw121124's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          区间dp
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-02 20:47:28" itemprop="dateModified" datetime="2025-05-02T20:47:28+08:00">2025-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8C%BA%E9%97%B4dp/" itemprop="url" rel="index"><span itemprop="name">区间dp</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>区间DP</h1>
+<ul>
+<li>是一类子问题从短到长，而不是从左到右的动态规划问题。</li>
+</ul>
+<h2 id="状态">状态</h2>
+<p>一般是：$dp_{i,j}$ 表示将区间 $[i,j]$ 的元素合并、拆分的最值、方案数。</p>
+<h2 id="转移">转移</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> len = <span class="number">2</span>; len &lt;= n; len++)<span class="comment">//这问题</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i + len - <span class="number">1</span> &lt;= n; i++)<span class="comment">//状态</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; j; k++)<span class="comment">//决策点</span></span><br><span class="line">		dp[i][j] = 运算(dp[i][j], 状态转移方程);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="例题">例题</h2>
+<h3 id="洛谷P1775">洛谷P1775</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1775">P1775 石子合并（弱化版）</a></p>
+<blockquote>
+<p>设有 $N(N \le 300)$ 堆石子排成一排，其编号为 $1,2,3,\cdots,N$。每堆石子有一定的质量 $m_i\ (m_i \le 1000)$。现在要将这 $N$ 堆石子合并成为一堆。每次只能合并相邻的两堆，合并的代价为这两堆石子的质量之和，合并后与这两堆石子相邻的石子将和新堆相邻。合并时由于选择的顺序不同，合并的总代价也不相同。试找出一种合理的方法，使总的代价最小，并输出最小代价。</p>
+</blockquote>
+<h4 id="状态-2">状态</h4>
+<p>$dp_{i,j}$ 表示将区间 $[i,j]$ 的元素合并的最小代价。</p>
+<h4 id="转移-2">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; j; k++)</span><br><span class="line">	dp[i][j] = <span class="built_in">min</span>(dp[i][j], dp[i][k] + dp[k + <span class="number">1</span>][j]);</span><br><span class="line">dp[i][j] += sum[j] - sum[i - <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="答案">答案</h4>
+<p>$dp_{1,n}$</p>
+<h3 id="洛谷P3146">洛谷P3146</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3146">P3146 [USACO16OPEN] 248 G</a></p>
+<blockquote>
+<p>贝西喜欢在手机上下载游戏来玩，尽管她确实觉得对于自己巨大的蹄子来说，小小的触摸屏用起来相当笨拙。</p>
+<p>她对当前正在玩的这个游戏特别感兴趣。游戏开始时给定一个包含 $N$ 个正整数的序列（$2 \leq N \leq 248$），每个数的范围在 $1 \ldots 40$ 之间。在一次操作中，贝西可以选择两个相邻且相等的数，将它们替换为一个比原数大 1 的数（例如，她可以将两个相邻的 7 替换为一个 8）。游戏的目标是最大化最终序列中的最大数值。请帮助贝西获得尽可能高的分数！</p>
+</blockquote>
+<h4 id="状态-3">状态</h4>
+<p>$dp_{i,j}$ 表示将区间 $[i,j]$ 的元素合并的最大能得到的数。</p>
+<h4 id="转移-3">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; j; k++)</span><br><span class="line">	<span class="keyword">if</span> (dp[i][k] == dp[k + <span class="number">1</span>][j])</span><br><span class="line">		dp[i][j] = <span class="built_in">max</span>(dp[i][j], dp[i][k] + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="答案-2">答案</h4>
+<p>$max(dp_{i,j})$</p>
+<h3 id="洛谷P1622">洛谷P1622</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1622">P1622 释放囚犯</a></p>
+<blockquote>
+<p>Caima 王国中有一个奇怪的监狱，这个监狱一共有 $P$ 个牢房，这些牢房一字排开，第 $i$ 个紧挨着第 $i+1$ 个（最后一个除外）。现在正好牢房是满的。</p>
+<p>上级下发了一个释放名单，要求每天释放名单上的一个人。这可把看守们吓得不轻，因为看守们知道，现在牢房中的 $P$ 个人，可以相互之间传话。如果某个人离开了，那么原来和这个人能说上话的人，都会很气愤，导致他们那天会一直大吼大叫，搞得看守很头疼。如果给这些要发火的人吃上肉，他们就会安静点。</p>
+</blockquote>
+<h4 id="状态-4">状态</h4>
+<p>$dp_{i,j}$ 表示将区间 $[a_i,a_j]$ 的人放在一起需要给的肉的数量。</p>
+<h4 id="转移-4">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; j; k++)</span><br><span class="line">	dp[i][j] = <span class="built_in">min</span>(dp[i][j], dp[i][k] + dp[k + <span class="number">1</span>][j]);</span><br><span class="line">dp[i][j] += sum[j] - sum[i - <span class="number">1</span>] + j - i - <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="答案-3">答案</h4>
+<p>$dp_{1,n}$</p>
+<h3 id="洛谷P2890">洛谷P2890</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2890">P2890 [USACO07OPEN] Cheapest Palindrome G</a></p>
+<blockquote>
+<p>给定一个由 $n$ 个不同的小写字母构成的长 $m$ 的字符串 $s$。可以通过<strong>在 $s$ 的任意位置</strong>增减字母将 $s$ 改为回文串。增减字母的花费不同，求最小花费。</p>
+</blockquote>
+<h4 id="状态-5">状态</h4>
+<p>$dp_{i,j}$ 表示将区间 $[i,j]$ 变成回文串的最小花费。</p>
+<h4 id="转移-5">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s[i] == s[j])</span><br><span class="line">	dp[i][j] = (len &gt; <span class="number">2</span> ? dp[i + <span class="number">1</span>][j - <span class="number">1</span>] : <span class="number">0</span>);</span><br><span class="line">dp[i][j] = <span class="built_in">min</span>(&#123; dp[i][j],dp[i][j - <span class="number">1</span>] + a[s[j]],dp[i + <span class="number">1</span>][j] + a[s[i]] &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="答案-4">答案</h4>
+<p>$dp_{1,n}$</p>
+<h4 id="类似题">类似题</h4>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1435">P1435 [IOI 2000] 回文字串</a>，只不过代价为 $1$。</li>
+</ul>
+<h3 id="洛谷P2858">洛谷P2858</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2858">P2858 [USACO06FEB] Treats for the Cows G/S</a></p>
+<blockquote>
+<p>约翰经常给产奶量高的奶牛发特殊津贴，于是很快奶牛们拥有了大笔不知该怎么花的钱。为此，约翰购置了 $N$（$1 \leq N \leq 2000$） 份美味的零食来卖给奶牛们。每天约翰售出一份零食。当然约翰希望这些零食全部售出后能得到最大的收益，这些零食有以下这些有趣的特性：</p>
+<ul>
+<li>零食按照 $1, \ldots, N$ 编号，它们被排成一列放在一个很长的盒子里。盒子的两端都有开口，约翰每天可以从盒子的任一端取出最外面的一个。</li>
+<li>与美酒与好吃的奶酪相似，这些零食储存得越久就越好吃。当然，这样约翰就可以把它们卖出更高的价钱。</li>
+<li>每份零食的初始价值不一定相同。约翰进货时，第i份零食的初始价值为 $V_i$（$1 \leq V \leq 1000$）。</li>
+<li>第i份零食如果在被买进后的第 $a$ 天出售，则它的售价是 $V_i \times a$。</li>
+</ul>
+<p>$V_i$ 的是从盒子顶端往下的第i份零食的初始价值。约翰告诉了你所有零食的初始价值，并希望你能帮他计算一下，在这些零食全被卖出后，他最多能得到多少钱。</p>
+</blockquote>
+<h4 id="状态-6">状态</h4>
+<p>$dp_{i,j}$ 表示只将区间 $[a_i,a_j]$ 买完的最大价值。</p>
+<h4 id="转移-6">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = <span class="built_in">max</span>(dp[i][j - <span class="number">1</span>], dp[i + <span class="number">1</span>][j]) + sum[j] - sum[i - <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="答案-5">答案</h4>
+<p>$dp_{1,n}$</p>
+<h3 id="洛谷P4170">洛谷P4170</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4170">P4170 [CQOI2007] 涂色</a></p>
+<h4 id="状态-7">状态</h4>
+<p>$dp_{i,j}$ 表示将区间 $[i,j]$ 达到目标的最少涂色次数。</p>
+<h4 id="转移-7">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s[i] == s[j])</span><br><span class="line">	dp[i][j] = <span class="built_in">min</span>(dp[i][j - <span class="number">1</span>], dp[i + <span class="number">1</span>][j]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; j; k++)</span><br><span class="line">		dp[i][j] = <span class="built_in">min</span>(dp[i][j], dp[i][k] + dp[k + <span class="number">1</span>][j]);</span><br></pre></td></tr></table></figure>
+<h4 id="答案-6">答案</h4>
+<p>$dp_{1,n}$</p>
+<h3 id="洛谷P3205">洛谷P3205</h3>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3205">P3205 [HNOI2010] 合唱队</a></p>
+<blockquote>
+<p>…<br>
+小 A 心中有一个理想队形，他想知道多少种初始队形可以获得理想的队形。<br>
+请求出答案对 $19650827$ 取模的值。</p>
+</blockquote>
+<h4 id="状态-8">状态</h4>
+<p>$dp_{i,j,0/1}$ 表示这一次是添加到开头/结尾，将区间 $[i,j]$ 达到理想的队形的方案数。</p>
+<h4 id="转移-8">转移</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a[i] &lt; a[i + <span class="number">1</span>])</span><br><span class="line">	dp[i][j][<span class="number">0</span>] = (dp[i][j][<span class="number">0</span>] + dp[i + <span class="number">1</span>][j][<span class="number">0</span>]) % mod;</span><br><span class="line"><span class="keyword">if</span> (a[i] &lt; a[j])</span><br><span class="line">	dp[i][j][<span class="number">0</span>] = (dp[i][j][<span class="number">0</span>] + dp[i + <span class="number">1</span>][j][<span class="number">1</span>]) % mod;</span><br><span class="line"><span class="keyword">if</span> (a[j] &gt; a[j - <span class="number">1</span>])</span><br><span class="line">	dp[i][j][<span class="number">1</span>] = (dp[i][j][<span class="number">1</span>] + dp[i][j - <span class="number">1</span>][<span class="number">1</span>]) % mod;</span><br><span class="line"><span class="keyword">if</span> (a[j] &gt; a[i])</span><br><span class="line">	dp[i][j][<span class="number">1</span>] = (dp[i][j][<span class="number">1</span>] + dp[i][j - <span class="number">1</span>][<span class="number">0</span>]) % mod;</span><br></pre></td></tr></table></figure>
+<h4 id="答案-7">答案</h4>
+<p>$(dp_{1,n,0}+dp_{1,n,1})\mod 19650827$</p>
+<h2 id="总结">总结</h2>
+<ol>
+<li>题目特征上有合并类、拆分类、两端处理类；</li>
+<li>求最值类区间DP，需要注意无效状态初始化；</li>
+<li>输出答案前，判断是否需要枚举；</li>
+<li>决策点一般是在中间枚举或是两个端点；</li>
+<li>若转移时可以从 $dp_{i+1,j-1}$ 递推，需要注意 $len=2$ 的情况；</li>
+<li>初始状态要分析清楚。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>wbw121124
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://wbwblog.github.io/2025/01/01/%E5%8C%BA%E9%97%B4dp/" title="区间dp">https://wbwblog.github.io/2025/01/01/区间dp/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+              <a href="/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag"># 区间dp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/%E5%8C%BA%E9%97%B4dp%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="区间dp（三）">
+                  <i class="fa fa-angle-left"></i> 区间dp（三）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="next" title="二分图">
+                  二分图 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-utterances">utterances</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+            <div class="tab-pane utterances" id="comment-utterances">
+              <div class="comments utterances-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wbw121124</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">47 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wbwblog","repo":"wbwblog.github.io","client_id":"Ov23li07Dq8KKOp0maz6","client_secret":"1c2a4f7b9d5e6c959a44541b5826d6011cc1f3d6","admin_user":["wbwblog","wbwdxh","wbw121124"],"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"44af13da254d3cd2d7122f15cd3e8ec7"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"wbwblog/wbwblog.github.io","issue_term":"pathname","theme":"github-dark"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+
+</html>
