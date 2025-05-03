@@ -1619,7 +1619,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #98ffd4;
+    background: #c6aaf6;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
