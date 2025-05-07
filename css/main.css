@@ -1619,7 +1619,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #d42b06;
+    background: #f1aaa8;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1839,7 +1839,6 @@ pre code {
   line-height: 1.8;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .post-toc .nav .nav-child {
   --height: 0;
@@ -2026,6 +2025,7 @@ pre code {
   color: #f00;
   display: inline-block;
   margin: 0 5px;
+  animation: icon-animate 1.33s ease-in-out infinite;
 }
 @keyframes icon-animate {
   0%, 100% {
@@ -2242,12 +2242,12 @@ pre code {
 }
 @media (min-width: 992px) {
   .post-body {
-    text-align: justify;
+    text-align: left;
   }
 }
 @media (max-width: 991px) {
   .post-body {
-    text-align: justify;
+    text-align: left;
   }
 }
 .post-body h1 .header-anchor,
@@ -2814,19 +2814,6 @@ ul.breadcrumb li:last-child {
   .tag-cloud-10 {
     border-bottom-color: #eee;
     color: #eee;
-  }
-}
-.gt-header a,
-.gt-comments a,
-.gt-popup a {
-  border-bottom: 0;
-}
-.gt-container .gt-popup .gt-action.is--active::before {
-  top: 0.7em;
-}
-@media (prefers-color-scheme: dark) {
-  .gt-container .gt-header-textarea {
-    background-color: var(--card-bg-color) !important;
   }
 }
 .utterances {
