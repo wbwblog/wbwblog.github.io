@@ -16,3 +16,7 @@ wbwdxh's Github chart:
 <img src="https://ghchart.rshah.org/wbwdxh" alt="wbwdxh's Github chart" />
 
 <img src="https://cdn.luogu.com.cn/upload/image_hosting/cfgy9siw.png" />
+
+update:
+
+[![Pages](https://github.com/wbwblog/wbwblog.github.io/actions/workflows/pages.yml/badge.svg)](https://github.com/wbwblog/wbwblog.github.io/actions/workflows/pages.yml)
