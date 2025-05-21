@@ -1,0 +1,1 @@
+Start-Process pwsh -Verb RunAs -ArgumentList "-NoExit", "-Command", "f:\newblog\hexoblog\build.bat"

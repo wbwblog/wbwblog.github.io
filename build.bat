@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy ByPass -File "F:\newblog\hexoblog\delete_public.ps1" && hexo clean && hexo g -d && hexo s

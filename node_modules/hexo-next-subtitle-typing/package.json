@@ -1,0 +1,26 @@
+{
+  "name": "hexo-next-subtitle-typing",
+  "version": "1.0.2",
+  "description": "Fireworks animation for NexT.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/next-theme/hexo-next-subtitle-typing.git"
+  },
+  "keywords": [
+    "Hexo",
+    "NexT"
+  ],
+  "author": "Mimi <stevenjoezhang@gmail.com> (https://zhangshuqiao.org)",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/next-theme/hexo-next-subtitle-typing/issues"
+  },
+  "homepage": "https://github.com/next-theme/hexo-next-subtitle-typing#readme",
+  "dependencies": {
+    "@next-theme/utils": "^1.1.0"
+  }
+}

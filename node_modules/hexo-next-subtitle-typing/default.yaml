@@ -1,0 +1,7 @@
+subtitle_typing:
+  enable: true
+  typing_speed: 500
+  deleting_speed: 100
+  pause_before_delete: 2000
+  pause_before_type: 500
+  subtitles: []
