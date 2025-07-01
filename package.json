@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "anchor-js": "^5.0.0",
-    "css-select": "^5.1.0",
+    "css-select": "^6.0.0",
     "hexo": "^7.0.0",
     "hexo-admonition": "^1.1.2",
     "hexo-deployer-git": "^4.0.0",
