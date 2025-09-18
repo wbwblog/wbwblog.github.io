@@ -44,8 +44,8 @@ jobs:
           node-version: "22"
       - name: Install Dependencies
         run: npm install
-      # - name: Build with Hexo
-      #   run: npx hexo g
+      - name: Build with Hexo
+        run: npx hexo g
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -62,3 +62,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
