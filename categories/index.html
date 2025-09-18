@@ -132,12 +132,18 @@
 <!-- <script src="/js/anchor.min.js" onload="anchors.add();"></script> -->
 <script type="module">
 	import '/js/anchor.min.js';
+	function addAnchors() {
+		const urlPattern = /^\/\d+\/\d+\/\d+\/[^\/]+/;
+		if (urlPattern.test(window.location.pathname)) {
+			anchors.add();
+		}
+	}
 	document.addEventListener('DOMContentLoaded', () => {
-		anchors.add();
+		addAnchors();
 	});
-	// document.addEve)
-	setInterval(() => { anchors.add() }, 5000);
+	setInterval(() => {addAnchors(); }, 5000);
 </script>
+
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
