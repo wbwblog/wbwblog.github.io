@@ -132,7 +132,7 @@
 <script type="module">
 	import '/js/anchor.min.js';
 	function addAnchors() {
-		const urlPattern = /^\/[^\/]*\/[]*/;
+		const urlPattern = /^\/.*\/[]*/;
 		if (urlPattern.test(window.location.pathname)) {
 			anchors.add();
 		}
@@ -142,6 +142,7 @@
 	});
 	setInterval(() => {addAnchors(); }, 5000);
 </script>
+
 
 
   <noscript>
@@ -329,7 +330,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-09-18 22:51:20" itemprop="dateModified" datetime="2025-09-18T22:51:20+08:00">2025-09-18</time>
+      <time title="修改时间：2025-09-18 22:54:36" itemprop="dateModified" datetime="2025-09-18T22:54:36+08:00">2025-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -378,19 +379,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>平衡树</h1>
+          <h1 id="平衡树"><a class="markdownIt-Anchor" href="#平衡树"></a> 平衡树</h1>
 <p>全称是二叉搜索平衡树</p>
-<p>二叉搜索树：对于一棵二叉树，每个节点有权值 $val$，任意节点 $x$ 的左子树的权值小于等于 $val_x$，右子树反之。</p>
+<p>二叉搜索树：对于一棵二叉树，每个节点有权值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">val</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span></span></span></span>，任意节点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 的左子树的权值小于等于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>a</mi><msub><mi>l</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">val_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，右子树反之。</p>
 <p>二叉搜索树的优点：</p>
 <ol>
-<li>具有单调性，可以 $log_2$ 的时间查找。</li>
+<li>具有单调性，可以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">log_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的时间查找。</li>
 <li>二叉搜索树的中序遍历是单调不减的，可以将下标当做权值，这样一个序列可以映射到一棵二叉搜索树。</li>
 </ol>
 <p>为什么需要平衡树？</p>
 <ul>
 <li>一个序列对应的二叉搜索树不唯一。我们希望找到高度最小的那颗应用。</li>
 </ul>
-<p>若一棵二叉树的任意一个结点 $x$，其左右子树高度差不超过 $1$，称为二叉平衡树。</p>
+<p>若一棵二叉树的任意一个结点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span>，其左右子树高度差不超过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，称为二叉平衡树。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/12/31/%E5%B9%B3%E8%A1%A1%E6%A0%91/#more" rel="contents">
