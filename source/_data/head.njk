@@ -21,7 +21,7 @@
 <script type="module">
 	import '/js/anchor.min.js';
 	function addAnchors() {
-		const urlPattern = /^\/\d+\/\d+\/\d+\/[^\/]+/;
+		const urlPattern = /^\/[^\/]*\/[]*/;
 		if (urlPattern.test(window.location.pathname)) {
 			anchors.add();
 		}
@@ -31,3 +31,4 @@
 	});
 	setInterval(() => {addAnchors(); }, 5000);
 </script>
+
