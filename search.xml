@@ -601,11 +601,11 @@
   </entry>
   <entry>
     <title>网络流之最小割问题</title>
-    <url>/2025/09/18/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/</url>
+    <url>/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="最小割问题"><a class="markdownIt-Anchor" href="#最小割问题"></a> 最小割问题</h1>
 <p>对于给定的网络流模型，其最小割是指删除边权和最小的边集，使得 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span> 不连通。</p>
 <p>最小割等于最大流，因为增广路的流量限制是由这些权值的边，方案不一定唯一。</p>
-<!--show more-->
+<span id="more"></span>
 <h2 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h2>
 <h3 id="洛谷p2774"><a class="markdownIt-Anchor" href="#洛谷p2774"></a> 洛谷P2774</h3>
 <p><a href="https://www.luogu.com.cn/problem/P2774">P2774 方格取数问题</a></p>

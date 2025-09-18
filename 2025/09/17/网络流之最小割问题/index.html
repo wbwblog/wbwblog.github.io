@@ -24,10 +24,10 @@
 
 
 
-<link rel="canonical" href="https://wbwblog.github.io/2025/09/18/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="https://wbwblog.github.io/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wbwblog.github.io/2025/09/18/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/","path":"2025/09/18/网络流之最小割问题/","title":"网络流之最小割问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wbwblog.github.io/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/","path":"2025/09/17/网络流之最小割问题/","title":"网络流之最小割问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>网络流之最小割问题 | wbw121124's blog</title>
@@ -288,7 +288,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/18/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/792595.png">
@@ -316,9 +316,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-09-18 12:00:00 / 修改时间：22:37:23" itemprop="dateCreated datePublished" datetime="2025-09-18T12:00:00+08:00">2025-09-18</time>
+      <time title="创建时间：2025-09-17 23:59:59" itemprop="dateCreated datePublished" datetime="2025-09-17T23:59:59+08:00">2025-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-09-18 22:37:55" itemprop="dateModified" datetime="2025-09-18T22:37:55+08:00">2025-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -356,7 +362,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>416</span>
+      <span>415</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -376,7 +382,7 @@
     <div class="post-body" itemprop="articleBody"><h1 id="最小割问题"><a class="markdownIt-Anchor" href="#最小割问题"></a> 最小割问题</h1>
 <p>对于给定的网络流模型，其最小割是指删除边权和最小的边集，使得 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span> 不连通。</p>
 <p>最小割等于最大流，因为增广路的流量限制是由这些权值的边，方案不一定唯一。</p>
-<!--show more-->
+<span id="more"></span>
 <h2 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h2>
 <h3 id="洛谷p2774"><a class="markdownIt-Anchor" href="#洛谷p2774"></a> 洛谷P2774</h3>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2774">P2774 方格取数问题</a></p>
@@ -398,7 +404,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://wbwblog.github.io/2025/09/18/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/" title="网络流之最小割问题">https://wbwblog.github.io/2025/09/18/网络流之最小割问题/</a>
+      <a href="https://wbwblog.github.io/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/" title="网络流之最小割问题">https://wbwblog.github.io/2025/09/17/网络流之最小割问题/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> 许可协议。转载请注明出处！
@@ -415,10 +421,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2025/09/17/918/" rel="prev" title="吾辈自强，勿忘九一八！">
+                  <i class="fa fa-angle-left"></i> 吾辈自强，勿忘九一八！
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/09/17/918/" rel="next" title="吾辈自强，勿忘九一八！">
-                  吾辈自强，勿忘九一八！ <i class="fa fa-angle-right"></i>
+                <a href="/2025/05/03/%E7%8A%B6%E5%8E%8BDP%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="状压DP（二）">
+                  状压DP（二） <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
