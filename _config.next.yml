@@ -59,7 +59,7 @@ favicon:
   #android_manifest: /manifest.json
 
 # Custom Logo (Warning: Do not support scheme Mist)
-custom_logo: /logo/logo.svg #/uploads/custom-logo.png
+custom_logo: #/logo/logo.svg #/uploads/custom-logo.png
 
 # Creative Commons 4.0 International License.
 # See: https://creativecommons.org/about/cclicenses/
@@ -472,7 +472,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family:
+    family: 'console'
 
 
 # ---------------------------------------------------------------

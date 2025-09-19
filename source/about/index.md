@@ -4,6 +4,8 @@ date: 2025-05-01 16:15:45
 layout: "page"
 ---
 
+<img src="/logo/logo.svg" alt="wbw121124's logo" />
+
 本博客是一个基于 Hexo & NexT 的博客。
 
 作者第 $n$ 个博客……
