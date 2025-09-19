@@ -293,6 +293,7 @@ follow_me:
   #Telegram: https://t.me/channel_name || fab fa-telegram
   #WeChat: /images/wechat_channel.png || fab fa-weixin
   #RSS: /atom.xml || fa fa-rss
+  github: https://github.com/wbw121124 || fab fa-github
 
 # Related popular posts
 # Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
@@ -303,8 +304,8 @@ related_posts:
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
-  enable: false
-  # url: https://github.com/wbwblog/wbwblog.github.io/tree/main/source/
+  enable: true
+  url: https://github.com/wbwblog/wbwblog.github.io/edit/main/source/
   # url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/ # Link for view source
   # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/ # Link for fork & edit
 
