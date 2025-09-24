@@ -1,5 +1,5 @@
 ---
-title: about
+title: wbwConsoleGUI
 date: 2025-09-25 00:00:00
 layout: "page"
 ---
