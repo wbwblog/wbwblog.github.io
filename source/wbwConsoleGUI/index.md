@@ -4,6 +4,251 @@ date: 2025-09-25 00:00:00
 layout: "page"
 ---
 
+# wbwConsoleGUI - 控制台图形用户界面库
+
+## 概述
+
+wbwConsoleGUI 是一个基于 C++ 开发的轻量级控制台图形用户界面库，使用 Windows API 实现。该库提供了在 Windows 控制台环境中创建交互式 GUI 应用程序的能力，支持按钮、标签、复选框、进度条等常见控件，并包含完整的鼠标事件处理。
+
+## 许可证
+
+GPLv3.0 - 由 wbw121124 开发
+
+## 功能特性
+
+### 核心功能
+- **跨编译器支持**: 兼容 MSVC 和 MinGW 编译器
+- **鼠标交互**: 完整的鼠标事件处理（点击、悬停、移动）
+- **多种控件**: 按钮、标签、复选框、进度条
+- **颜色支持**: 16 种控制台颜色配置
+- **实时渲染**: 高效的界面更新机制
+
+### 控件特性
+- **按钮**: 支持点击事件，悬停和按下状态可视化
+- **标签**: 支持文本显示和悬停效果
+- **复选框**: 支持选中状态切换和事件回调
+- **进度条**: 多种样式（经典、现代、渐变、块状），支持动画和百分比显示
+
+## 快速开始
+
+### 基本使用示例
+
+```cpp
+#include "wbwConsoleGUI.h"
+
+int main()
+{
+    using namespace wbwConsoleGUI;
+    Console::disableQuickEditMode();
+
+    Application app;
+
+    // 创建标题标签
+    Label* title = new Label(Rect(0, 2, 30, 1), "=== 控制台GUI演示 ===");
+    title->setColors(Color::BRIGHT_MAGENTA, Color::BLACK);
+
+    // 创建按钮
+    Button* button = new Button(Rect(0, 5, 8, 1), "测试按钮");
+    button->setOnClick([]() {
+        Console::setCursorPosition(0, 12);
+        Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
+        std::cout << "按钮被点击了!";
+        Color::reset();
+    });
+
+    // 添加控件并运行应用
+    app.addControl(title);
+    app.addControl(button);
+    app.run();
+
+    return 0;
+}
+```
+
+## API 文档
+
+### 核心类
+
+#### Application 类
+主应用程序类，管理控件和事件循环。
+
+**主要方法:**
+- `void run()`: 启动应用程序主循环
+- `void stop()`: 停止应用程序
+- `void addControl(Control*)`: 添加控件到应用
+- `MouseInput& getMouse()`: 获取鼠标输入对象
+
+#### Control 类（基类）
+所有控件的基类，提供基本属性和方法。
+
+**主要属性:**
+- `bounds`: 控件位置和大小（Rect 对象）
+- `text`: 控件文本
+- `visible`: 可见性
+- `enabled`: 启用状态
+
+**主要方法:**
+- `virtual void draw()`: 绘制控件（需子类实现）
+- `virtual void handleMouse(const MouseInput&)`: 处理鼠标事件
+- `virtual void onClick()`: 点击事件回调
+
+### 控件类
+
+#### Button 类
+按钮控件，支持点击事件。
+
+```cpp
+Button* btn = new Button(Rect(10, 5, 12, 1), "点击我");
+btn->setOnClick([]() {
+    // 点击处理逻辑
+});
+```
+
+#### Label 类
+文本标签控件。
+
+```cpp
+Label* label = new Label(Rect(5, 3, 20, 1), "这是一个标签");
+label->setColors(Color::BRIGHT_WHITE, Color::BLUE);
+```
+
+#### CheckBox 类
+复选框控件。
+
+```cpp
+CheckBox* checkbox = new CheckBox(Rect(0, 8, 15, 1), "启用选项", false);
+checkbox->setOnChange([](bool checked) {
+    // 状态改变处理
+});
+```
+
+#### ProgressBar 类
+进度条控件，支持多种样式。
+
+```cpp
+ProgressBar* progress = new ProgressBar(Rect(0, 10, 30, 1), 0, 100);
+progress->setValue(50);
+progress->setStyle(ProgressBarStyle::Modern);
+```
+
+### 工具类
+
+#### Console 命名空间
+控制台操作工具函数。
+
+**主要函数:**
+- `void clear()`: 清空控制台
+- `void setCursorPosition(int x, int y)`: 设置光标位置
+- `void hideCursor()`: 隐藏光标
+- `Size getConsoleSize()`: 获取控制台尺寸
+
+#### Color 命名空间
+颜色控制功能。
+
+**颜色常量:**
+- 基本色: BLACK, BLUE, GREEN, RED 等
+- 高亮色: BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_RED 等
+
+**主要函数:**
+- `void setColor(int foreground, int background)`: 设置颜色
+- `void reset()`: 重置颜色
+
+### 数据结构
+
+#### Point 结构
+表示二维坐标点。
+```cpp
+Point p(10, 20);  // x=10, y=20
+```
+
+#### Size 结构
+表示尺寸。
+```cpp
+Size s(100, 50);  // width=100, height=50
+```
+
+#### Rect 结构
+表示矩形区域。
+```cpp
+Rect r(5, 5, 30, 10);  // x=5, y=5, width=30, height=10
+```
+
+## 编译说明
+
+### MSVC 编译器
+自动链接所需库，无需额外配置。
+
+### MinGW 编译器
+需要在编译命令中手动链接库：
+```bash
+g++ -o program main.cpp -lgdi32 -luser32
+```
+
+## 高级用法
+
+### 自定义控件
+可以通过继承 `Control` 类创建自定义控件：
+
+```cpp
+class CustomControl : public Control {
+public:
+    CustomControl(const Rect& rect, const std::string& text) 
+        : Control(rect, text) {}
+    
+    void draw() override {
+        if (!visible) return;
+        
+        Console::setCursorPosition(bounds.position.x, bounds.position.y);
+        Color::setColor(foregroundColor, backgroundColor);
+        std::cout << "自定义: " << text;
+        Color::reset();
+    }
+    
+    void onClick() override {
+        // 自定义点击处理
+    }
+};
+```
+
+### 鼠标事件处理
+可以通过 `MouseInput` 类获取详细的鼠标状态：
+
+```cpp
+Application app;
+// 在主循环中访问鼠标状态
+if (app.getMouse().isLeftClick()) {
+    POINT pos = app.getMouse().getPosition();
+    // 处理左键点击
+}
+```
+
+## 注意事项
+
+1. **控制台字体**: 建议使用等宽字体以获得最佳显示效果
+2. **快速编辑模式**: 库会自动禁用控制台的快速编辑模式以防止程序暂停
+3. **性能考虑**: 在控件较多时注意优化绘制逻辑
+4. **线程安全**: 当前版本非线程安全，需在单线程环境下使用
+
+## 示例程序
+
+库中包含完整的演示程序，展示所有控件的使用方法：
+- 创建多个按钮并处理点击事件
+- 使用复选框并监听状态变化
+- 显示不同样式的进度条
+- 实时显示鼠标位置信息
+
+## 版本信息
+
+- **开发者**: wbw121124
+- **许可证**: GPLv3.0
+- **最后更新**: 文档创建日期
+
+## 技术支持
+
+如有问题或建议，请联系开发者或提交问题报告。
+
+## wbwConsoleGUI.h
+
 ```cpp
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 #include <iostream>
@@ -789,67 +1034,6 @@ namespace wbwConsoleGUI
 
 		MouseInput& getMouse() { return mouse; }
 	};
-}
-// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
-// 使用示例
-int main()
-{
-	using namespace wbwConsoleGUI;
-	Console::disableQuickEditMode();
-
-	Application app;
-
-	// 创建控件
-	Label* title = new Label(Rect(0, 2, 30, 1), "=== 控制台GUI演示 ===");
-	title->setColors(Color::BRIGHT_MAGENTA, Color::BLACK);
-
-	Button* button1 = new Button(Rect(0, 5, 8, 1), "按钮1");
-	button1->setOnClick([]()
-		{
-			Console::setCursorPosition(0, 12);
-			Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
-			std::cout << "按钮1被点击了!                    ";
-			Color::reset();
-		});
-
-	Button* button2 = new Button(Rect(5, 6, 8, 1), "按钮2");
-	button2->setOnClick([]()
-		{
-			Console::setCursorPosition(0, 12);
-			Color::setColor(Color::BRIGHT_RED, Color::BLACK);
-			std::cout << "按钮2被点击了!                    ";
-			Color::reset();
-		});
-
-	Button* button3 = new Button(Rect(10, 7, 8, 1), "按钮3");
-	button3->setOnClick([]()
-		{
-			Console::setCursorPosition(0, 12);
-			Color::setColor(Color::BRIGHT_RED, Color::BLACK);
-			std::cout << "按钮3被点击了!                    ";
-			Color::reset();
-		});
-
-	CheckBox* checkbox = new CheckBox(Rect(0, 9, 12, 1), "启用特性", false);
-	checkbox->setOnChange([](bool checked)
-		{
-			Console::setCursorPosition(0, 13);
-			Color::setColor(Color::BRIGHT_CYAN, Color::BLACK);
-			std::cout << "复选框状态: " << (checked ? "已选中" : "未选中") << "        ";
-			Color::reset();
-		});
-
-	// 添加控件到应用
-	app.addControl(title);
-	app.addControl(button1);
-	app.addControl(button2);
-	app.addControl(button3);
-	app.addControl(checkbox);
-
-	// 运行应用
-	app.run();
-
-	return 0;
 }
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 ```
