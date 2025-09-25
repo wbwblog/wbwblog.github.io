@@ -43,9 +43,9 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: shikijs # highlight.js
+syntax_highlighter: highlight.js
 highlight:
-  enable: false
+  enable: true
   line_number: true
   auto_detect: true
   tab_replace:
@@ -133,10 +133,10 @@ subtitle_typing:
   pause_before_delete: 1000
   pause_before_type: 50
   subtitles:
-    - Welcome to my blog
-    - Enjoy your stay
-    - Have a great day!
-    - Where there is a will, there is a way.
+    	- Welcome to my blog
+    	- Enjoy your stay
+    	- Have a great day!
+    	- Where there is a will, there is a way.
 		- Hope for the best, plan for the worst.
 		- Wisdom is more precious than wealth.
 		- Action speaks louder than words.
@@ -257,9 +257,3 @@ anchor:
     # Also you can choose ForkAwesome, but that's another story.
     font: FontAwesome
     content: \f0c1 # CSS content for FontAwesome & ForkAwesome.
-
-shiki:
-  enable: true
-  theme: dark-plus
-  externalTheme:
-  backgroundColor: '#1a1a1a'
