@@ -41,6 +41,8 @@
     "hexo-word-counter": "^0.2.0",
     "lodash.assignin": "^4.2.0",
     "markdown-it-katex": "^2.0.3",
-    "nvm": "^0.0.4"
+    "nvm": "^0.0.4",
+    "hexo-shiki": "^0.2.1",
+    "shiki": "^3.13.0"
   }
 }
