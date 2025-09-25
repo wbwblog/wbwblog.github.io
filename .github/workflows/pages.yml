@@ -22,7 +22,11 @@ jobs:
  
       - name: Install Dependencies
         run: npm ci
- 
+
+      - name: Install
+        run: |
+          npm install
+        
       - name: Build Site
         run: |
           npx hexo clean
@@ -39,3 +43,4 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./public
           commit_message: "Deploy: ${{ github.sha }}"
+
