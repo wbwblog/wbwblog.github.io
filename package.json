@@ -41,6 +41,7 @@
     "hexo-word-counter": "^0.2.0",
     "lodash.assignin": "^4.2.0",
     "markdown-it-katex": "^2.0.3",
-    "nvm": "^0.0.4"
+    "nvm": "^0.0.4",
+    "hexo-related-posts": "^1.6.2"
   }
 }
