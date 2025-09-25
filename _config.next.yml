@@ -294,6 +294,8 @@ follow_me:
   #WeChat: /images/wechat_channel.png || fab fa-weixin
   #RSS: /atom.xml || fa fa-rss
   github: https://github.com/wbw121124 || fab fa-github
+  CSDN: https://blog.csdn.net/wbw121124
+  cnblogs: https://cnblogs.com/wbw121124
 
 # Related popular posts
 # Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
@@ -1004,4 +1006,5 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
