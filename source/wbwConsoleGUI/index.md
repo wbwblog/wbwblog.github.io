@@ -4,6 +4,10 @@ date: 2025-09-25 00:00:00
 layout: "page"
 ---
 
+{% note warning %}
+#### 版本更新了，但是文档没有更新！！！
+{% endnote %}
+
 # wbwConsoleGUI - 控制台图形用户界面库
 
 ## 概述
@@ -299,10 +303,6 @@ namespace wbwConsoleGUI
 		}
 	};
 
-	int stringSize(std::string s)
-	{
-		return s.size();
-	}
 	// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 	// 控制台工具函数
 	namespace Console
@@ -316,6 +316,7 @@ namespace wbwConsoleGUI
 			mode &= ~ENABLE_QUICK_EDIT_MODE;  // 禁用快速编辑
 			mode &= ~ENABLE_INSERT_MODE;      // 禁用插入模式
 			mode |= ENABLE_EXTENDED_FLAGS;    // 启用扩展标志
+			mode &= ~ENABLE_ECHO_INPUT;
 			SetConsoleMode(hInput, mode);
 		}
 
@@ -534,7 +535,7 @@ namespace wbwConsoleGUI
 		bool isEnabled() const { return mouseEnabled; }
 	};
 
-	// 颜色控制（保持不变）
+	// 颜色控制
 	namespace Color
 	{
 		enum Code {
@@ -556,7 +557,7 @@ namespace wbwConsoleGUI
 		}
 	}
 	// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
-	// 基础控件类（增强版，支持鼠标事件）
+	// 基础控件类
 	class Control {
 	protected:
 		Rect bounds;
@@ -765,8 +766,8 @@ namespace wbwConsoleGUI
 	// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 	// 进度条样式枚举
 	enum class ProgressBarStyle {
-		Classic,    // Windows经典样式
-		Modern,     // Windows现代样式
+		Classic,    // 经典样式
+		Modern,     // 现代样式
 		Gradient,   // 渐变样式
 		Block       // 块状样式
 	};
@@ -806,7 +807,21 @@ namespace wbwConsoleGUI
 		{
 			if (!visible) return;
 
-			drawBlockProgressBar();
+			switch (style)
+			{
+			case ProgressBarStyle::Classic:
+				drawClassicProgressBar();
+				break;
+			case ProgressBarStyle::Modern:
+				drawModernProgressBar();
+				break;
+			case ProgressBarStyle::Gradient:
+				drawGradientProgressBar();
+				break;
+			case ProgressBarStyle::Block:
+				drawBlockProgressBar();
+				break;
+			}
 
 			if (animated)
 			{
@@ -871,6 +886,87 @@ namespace wbwConsoleGUI
 		}
 
 	private:
+		void drawClassicProgressBar()
+		{
+			int progressWidth = getProgressWidth();
+			int barWidth = bounds.size.width;
+			int blockCount = barWidth;  // 每个块占1个字符宽度
+
+			Console::setCursorPosition(bounds.position.x, bounds.position.y);
+
+			int completedBlocks = progressWidth;
+
+			for (int i = 0; i < blockCount; i++)
+			{
+				if (i < completedBlocks)
+				{
+					Color::setColor(colors.progress, colors.background);
+					std::cout << "=";  // 实心方块
+				}
+				else
+				{
+					Color::setColor(colors.background, colors.background);
+					std::cout << "_";  // 空心方块
+				}
+			}
+
+			// 绘制文本
+			drawProgressText(bounds.position.y);
+		}
+		void drawModernProgressBar()
+		{
+			int progressWidth = getProgressWidth();
+			int barWidth = bounds.size.width;
+			int blockCount = barWidth;  // 每个块占1个字符宽度
+
+			Console::setCursorPosition(bounds.position.x, bounds.position.y);
+
+			int completedBlocks = progressWidth;
+
+			for (int i = 0; i < blockCount; i++)
+			{
+				if (i < completedBlocks)
+				{
+					Color::setColor(colors.progress, colors.text);
+					std::cout << ">";  // 实心方块
+				}
+				else
+				{
+					Color::setColor(colors.background, colors.background);
+					std::cout << "<";  // 空心方块
+				}
+			}
+
+			// 绘制文本
+			drawProgressText(bounds.position.y);
+		}
+		void drawGradientProgressBar()
+		{
+			int progressWidth = getProgressWidth();
+			int barWidth = bounds.size.width;
+			int blockCount = barWidth;  // 每个块占1个字符宽度
+
+			Console::setCursorPosition(bounds.position.x, bounds.position.y);
+
+			int completedBlocks = progressWidth;
+
+			for (int i = 0; i < blockCount; i++)
+			{
+				if (i < completedBlocks)
+				{
+					Color::setColor(colors.progress, colors.background);
+					std::cout << "=";  // 实心方块
+				}
+				else
+				{
+					Color::setColor(colors.progress, colors.background);
+					std::cout << "+";  // 空心方块
+				}
+			}
+
+			// 绘制文本
+			drawProgressText(bounds.position.y);
+		}
 		// 块状样式
 		void drawBlockProgressBar()
 		{
