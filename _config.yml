@@ -43,13 +43,14 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: highlight.js
+syntax_highlighter: shikijs # highlight.js
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: true
   tab_replace:
 prismjs:
+  enable: false
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -256,3 +257,9 @@ anchor:
     # Also you can choose ForkAwesome, but that's another story.
     font: FontAwesome
     content: \f0c1 # CSS content for FontAwesome & ForkAwesome.
+
+shiki:
+  enable: true
+  theme: dark-plus
+  externalTheme:
+  backgroundColor: '#1a1a1a'
