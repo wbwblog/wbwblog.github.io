@@ -386,7 +386,7 @@ codeblock:
   copy_button:
     enable: true
     # Available values: default | flat | mac
-    style: flat
+    style: mac
   # Fold code block
   fold:
     enable: true
@@ -1006,5 +1006,6 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
