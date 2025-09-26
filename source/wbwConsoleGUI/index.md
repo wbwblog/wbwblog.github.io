@@ -40,33 +40,111 @@ GPLv3.0 - 由 wbw121124 开发
 ```cpp
 #include "wbwConsoleGUI.h"
 
+// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
+// 使用示例
 int main()
 {
-    using namespace wbwConsoleGUI;
-    Console::disableQuickEditMode();
+	using namespace wbwConsoleGUI;
+	Console::disableQuickEditMode();
 
-    Application app;
+	Application app;
 
-    // 创建标题标签
-    Label* title = new Label(Rect(0, 2, 30, 1), "=== 控制台GUI演示 ===");
-    title->setColors(Color::BRIGHT_MAGENTA, Color::BLACK);
+	app.showDebug = true;
 
-    // 创建按钮
-    Button* button = new Button(Rect(0, 5, 8, 1), "测试按钮");
-    button->setOnClick([]() {
-        Console::setCursorPosition(0, 12);
-        Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
-        std::cout << "按钮被点击了!";
-        Color::reset();
-    });
+	// 创建控件
+	Label* title = new Label(Rect(0, 2, 30, 1), "=== 控制台GUI演示 ===");
+	title->setColors(Color::BRIGHT_MAGENTA, Color::BLACK);
 
-    // 添加控件并运行应用
-    app.addControl(title);
-    app.addControl(button);
-    app.run();
+	Button* button1 = new Button(Rect(0, 5, 8, 1), "按钮1");
+	button1->setOnClick([]()
+		{
+			Console::setCursorPosition(0, 12);
+			Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
+			std::cout << "按钮1被点击了!                    ";
+			Color::reset();
+		});
 
-    return 0;
+	ProgressBar* progressbar = new ProgressBar(Rect(0, 8, 100, 1));
+	progressbar->setShowValue(false);
+	progressbar->setStyle(ProgressBarStyle(0));
+	int cnt = 0, tot = 0;
+
+	Button* button2 = new Button(Rect(5, 6, 8, 1), "按钮2");
+	button2->setOnClick([&]()
+		{
+			progressbar->setStyle(ProgressBarStyle(++tot % 4));
+			Console::setCursorPosition(0, 12);
+			Color::setColor(Color::BRIGHT_RED, Color::BLACK);
+			std::cout << "按钮2被点击了!                    ";
+			Color::reset();
+		});
+
+	Button* button3 = new Button(Rect(10, 7, 8, 1), "按钮3");
+	button3->setOnClick([&]()
+		{
+			progressbar->setValue(++cnt %= 101);
+			Console::setCursorPosition(0, 12);
+			Color::setColor(Color::BRIGHT_BLUE, Color::BLACK);
+			std::cout << "按钮3被点击了!                    ";
+			Color::reset();
+		});
+
+
+	CheckBox* checkbox = new CheckBox(Rect(0, 9, 12, 1), "启用特性", false);
+	checkbox->setOnChange([](bool checked)
+		{
+			Console::setCursorPosition(0, 13);
+			Color::setColor(Color::BRIGHT_CYAN, Color::BLACK);
+			std::cout << "复选框状态: " << (checked ? "已选中" : "未选中") << "        ";
+			Color::reset();
+		});
+	// 创建文本框
+	TextBox* textBox = new TextBox(Rect(0, 25, 20, 3), "输入框:");
+	textBox->setOnClick([]()
+		{
+			Console::setCursorPosition(0, 15);
+			Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
+			std::cout << "文本框获得焦点!                    ";
+			Color::reset();
+		});
+
+	// 添加清除按钮
+	Button* clearButton = new Button(Rect(22, 25, 8, 1), "清除");
+	clearButton->setOnClick([textBox]()
+		{
+			textBox->setText("");
+			Console::setCursorPosition(0, 15);
+			Color::setColor(Color::BRIGHT_RED, Color::BLACK);
+			std::cout << "文本框已清除!                      ";
+			Color::reset();
+		});
+
+	// 添加显示文本按钮
+	Button* showButton = new Button(Rect(22, 27, 8, 1), "显示内容");
+	showButton->setOnClick([textBox]()
+		{
+			Console::setCursorPosition(0, 16);
+			Color::setColor(Color::BRIGHT_CYAN, Color::BLACK);
+			std::cout << "文本框内容: \"" << textBox->getText() << "\"";
+			Color::reset();
+		});
+	// 添加控件到应用
+	app.addControl(title);
+	app.addControl(button1);
+	app.addControl(button2);
+	app.addControl(button3);
+	app.addControl(progressbar);
+	app.addControl(checkbox);
+	app.addControl(textBox);
+	app.addControl(clearButton);
+	app.addControl(showButton);
+
+	// 运行应用
+	app.run();
+
+	return 0;
 }
+// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 ```
 
 ## API 文档
@@ -254,6 +332,7 @@ if (app.getMouse().isLeftClick()) {
 ## wbwConsoleGUI.h
 
 ```cpp
+// wbwConsoleGUI - 1.0.0
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 #include <iostream>
 #include <string>
@@ -268,10 +347,11 @@ if (app.getMouse().isLeftClick()) {
 #include <chrono>
 #include <memory>
 #include <cmath>
+#define wbwConsoleGUIVer "1.0.0"
 #ifdef _MSC_VER
 #pragma comment(lib, "gdi32.lib")
 #pragma comment(lib, "user32.lib")
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) && false
 #warning 使用MinGW编译时, 应在命令行中链接库: `-lgdi32 -luser32`
 #endif
 namespace wbwConsoleGUI
@@ -317,6 +397,7 @@ namespace wbwConsoleGUI
 			mode &= ~ENABLE_INSERT_MODE;      // 禁用插入模式
 			mode |= ENABLE_EXTENDED_FLAGS;    // 启用扩展标志
 			mode &= ~ENABLE_ECHO_INPUT;
+			mode &= ~ENABLE_PROCESSED_INPUT;
 			SetConsoleMode(hInput, mode);
 		}
 
@@ -568,6 +649,8 @@ namespace wbwConsoleGUI
 		int backgroundColor;
 		bool hovered;
 		bool pressed;
+		bool pressedR;
+		std::function<void()> clickHandler, clickRHandler, hoverHandler, leaveHandler;
 
 	public:
 		Control(const Rect& rect = Rect(), const std::string& text = "")
@@ -596,11 +679,46 @@ namespace wbwConsoleGUI
 			{
 				pressed = false;
 			}
+
+			if (hovered && mouse.isRightClick())
+			{
+				pressedR = true;
+				onRClick();
+			}
+			else if (pressed && !mouse.isRightClick())
+			{
+				pressedR = false;
+			}
 		}
 
-		virtual void onClick() { }
-		virtual void onHover() { }
-		virtual void onLeave() { }
+		virtual void onClick()
+		{
+			if (enabled && clickHandler)
+			{
+				clickHandler();
+			}
+		}
+		virtual void onRClick()
+		{
+			if (enabled && clickRHandler)
+			{
+				clickRHandler();
+			}
+		}
+		virtual void onHover()
+		{
+			if (enabled && hoverHandler)
+			{
+				hoverHandler();
+			}
+		}
+		virtual void onLeave()
+		{
+			if (enabled && leaveHandler)
+			{
+				leaveHandler();
+			}
+		}
 
 		bool isPointInRect(const POINT& point, const Rect& rect) const
 		{
@@ -629,13 +747,376 @@ namespace wbwConsoleGUI
 		bool isEnabled() const { return enabled; }
 		bool isHovered() const { return hovered; }
 		bool isPressed() const { return pressed; }
+
+		void setOnClick(const std::function<void()>& handler)
+		{
+			clickHandler = handler;
+		}
+		void setOnRClick(const std::function<void()>& handler)
+		{
+			clickRHandler = handler;
+		}
+		void setOnHover(const std::function<void()>& handler)
+		{
+			hoverHandler = handler;
+		}
+		void setOnLeave(const std::function<void()>& handler)
+		{
+			leaveHandler = handler;
+		}
+	};
+	// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
+// 文本框控件
+	class TextBox : public Control {
+	private:
+		std::string content;
+		size_t cursorPosition;
+		size_t scrollOffset;
+		bool hasFocus1;
+		bool showCursor;
+		int cursorBlinkRate;
+		std::chrono::steady_clock::time_point lastBlinkTime;
+		bool cursorVisible;
+		size_t selectionStart;
+		bool hasSelection;
+		int maxLength;
+
+	public:
+		TextBox(const Rect& rect = Rect(), const std::string& text = "")
+			: Control(rect, text), content(""), cursorPosition(0), scrollOffset(0),
+			hasFocus1(false), showCursor(true), cursorBlinkRate(500),
+			cursorVisible(true), selectionStart(0), hasSelection(false),
+			maxLength(0)  // 0表示无限制
+		{
+			lastBlinkTime = std::chrono::steady_clock::now();
+		}
+
+		void draw() override
+		{
+			if (!visible) return;
+
+			// 更新光标闪烁
+			updateCursorBlink();
+
+			Console::setCursorPosition(bounds.position.x, bounds.position.y);
+
+			// 根据状态设置颜色
+			if (!enabled)
+			{
+				Color::setColor(Color::GRAY, Color::BLACK);
+			}
+			else if (hasFocus1)
+			{
+				Color::setColor(Color::BLACK, Color::BRIGHT_WHITE);
+			}
+			else if (hovered)
+			{
+				Color::setColor(Color::BRIGHT_WHITE, Color::GRAY);
+			}
+			else
+			{
+				Color::setColor(foregroundColor, backgroundColor);
+			}
+
+			// 绘制边框
+			std::cout << "+";
+			for (int i = 0; i < bounds.size.width - 2; i++)
+			{
+				std::cout << "-";
+			}
+			std::cout << "+";
+
+			// 绘制文本内容
+			Console::setCursorPosition(bounds.position.x, bounds.position.y + 1);
+			std::cout << "|";
+
+			std::string displayText = getDisplayText();
+			int textWidth = bounds.size.width - 2; // 减去边框
+
+			// 确保显示文本不超过可用宽度
+			if (displayText.length() > static_cast<size_t>(textWidth))
+			{
+				displayText = displayText.substr(0, textWidth);
+			}
+
+			std::cout << displayText;
+
+			// 填充剩余空间
+			for (int i = displayText.length(); i < textWidth; i++)
+			{
+				std::cout << " ";
+			}
+
+			std::cout << "|";
+
+			// 绘制底部边框
+			Console::setCursorPosition(bounds.position.x, bounds.position.y + 2);
+			std::cout << "+";
+			for (int i = 0; i < bounds.size.width - 2; i++)
+			{
+				std::cout << "-";
+			}
+			std::cout << "+";
+
+			// 如果有焦点且启用光标，绘制光标
+			if (hasFocus1 && enabled && showCursor && cursorVisible)
+			{
+				drawCursor();
+			}
+
+			Color::reset();
+		}
+
+		void handleMouse(const MouseInput& mouse) override
+		{
+			if (!visible || !enabled) return;
+
+			POINT mousePos = mouse.getPosition();
+			bool wasHovered = hovered;
+			hovered = isPointInRect(mousePos, bounds);
+
+			// 处理悬停状态变化
+			if (hovered && !wasHovered)
+			{
+				onHover();
+			}
+			else if (!hovered && wasHovered)
+			{
+				onLeave();
+			}
+
+			// 处理点击事件
+			if (hovered && mouse.isLeftClick())
+			{
+				setFocus(true);
+				// 计算点击位置对应的光标位置
+				int clickX = mousePos.x - bounds.position.x - 1; // 减去左边框
+				if (clickX < 0) clickX = 0;
+
+				cursorPosition = scrollOffset + clickX;
+				if (cursorPosition > content.length())
+				{
+					cursorPosition = content.length();
+				}
+
+				selectionStart = cursorPosition;
+				hasSelection = false;
+				pressed = true;
+				onClick();
+			}
+			else if (pressed && !mouse.isLeftClick())
+			{
+				pressed = false;
+			}
+		}
+
+		void handleKeyInput(char key)
+		{
+			if (!hasFocus1 || !enabled) return;
+
+			switch (key)
+			{
+			case 8: // Backspace
+				if (hasSelection)
+					deleteSelection();
+				else if (cursorPosition > 0)
+				{
+					content.erase(cursorPosition - 1, 1);
+					cursorPosition--;
+				}
+				break;
+
+			case 13: // Enter
+				// 触发回车事件
+				if (clickHandler)
+				{
+					clickHandler();
+				}
+				break;
+
+			case 1: // Ctrl+A (全选)
+				selectAll();
+				break;
+
+			default:
+				// 处理普通字符输入
+				if (key >= 32 && key <= 126) // 可打印字符
+				{
+					if (hasSelection)
+					{
+						deleteSelection();
+					}
+
+					if (maxLength == 0 || content.length() < static_cast<size_t>(maxLength))
+					{
+						content.insert(cursorPosition, 1, key);
+						cursorPosition++;
+					}
+				}
+				break;
+			}
+
+			// 更新滚动偏移量
+			updateScrollOffset();
+			resetCursorBlink();
+		}
+
+		void handleSpecialKey(int keyCode)
+		{
+			if (!hasFocus1 || !enabled) return;
+
+			if (GetAsyncKeyState(VK_LEFT) && cursorPosition > 0)
+				cursorPosition--;
+			if (GetAsyncKeyState(VK_RIGHT) && cursorPosition < content.length())
+				cursorPosition++;
+			if (GetAsyncKeyState(VK_HOME))
+				cursorPosition = 0;
+			if (GetAsyncKeyState(VK_END))
+				cursorPosition = content.length();
+			if (keyCode == 83)
+				if (hasSelection)
+				{
+					deleteSelection();
+				}
+				else if (cursorPosition < content.length())
+				{
+					content.erase(cursorPosition, 1);
+				}
+
+			// // 处理选择（按住Shift） // ps:废了
+			// if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
+			// {
+			// 	if (!hasSelection)
+			// 	{
+			// 		selectionStart = cursorPosition;
+			// 		hasSelection = true;
+			// 	}
+			// }
+			// else
+			// {
+			// 	hasSelection = false;
+			// }
+
+			updateScrollOffset();
+			resetCursorBlink();
+		}
+
+		// 设置和获取方法
+		void setText(const std::string& newText)
+		{
+			content = newText;
+			cursorPosition = content.length();
+			scrollOffset = 0;
+			hasSelection = false;
+		}
+
+		std::string getText() const { return content; }
+
+		void setFocus(bool focus)
+		{
+			hasFocus1 = focus;
+			if (hasFocus1)
+			{
+				resetCursorBlink();
+			}
+		}
+
+		bool hasFocus() const { return hasFocus1; }
+
+		void setMaxLength(int length) { maxLength = length; }
+		int getMaxLength() const { return maxLength; }
+
+		void setShowCursor(bool show) { showCursor = show; }
+
+	private:
+		std::string getDisplayText() const
+		{
+			if (scrollOffset >= content.length())
+			{
+				return "";
+			}
+			return content.substr(scrollOffset);
+		}
+
+		void drawCursor()
+		{
+			int cursorX = bounds.position.x + 1 + (cursorPosition - scrollOffset);
+			int cursorY = bounds.position.y + 1;
+
+			if (cursorX >= bounds.position.x + 1 &&
+				cursorX < bounds.position.x + bounds.size.width - 1)
+			{
+				Console::setCursorPosition(cursorX, cursorY);
+				Color::setColor(Color::BLACK, Color::BRIGHT_YELLOW);
+
+				if (cursorPosition < content.length())
+				{
+					std::cout << content[cursorPosition];
+				}
+				else
+				{
+					std::cout << " ";
+				}
+
+				Color::reset();
+			}
+		}
+
+		void updateCursorBlink()
+		{
+			auto currentTime = std::chrono::steady_clock::now();
+			auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+				currentTime - lastBlinkTime).count();
+
+			if (elapsed >= cursorBlinkRate)
+			{
+				cursorVisible = !cursorVisible;
+				lastBlinkTime = currentTime;
+			}
+		}
+
+		void resetCursorBlink()
+		{
+			cursorVisible = true;
+			lastBlinkTime = std::chrono::steady_clock::now();
+		}
+
+		void updateScrollOffset()
+		{
+			int textWidth = bounds.size.width - 2; // 减去边框
+
+			if (cursorPosition < scrollOffset)
+			{
+				scrollOffset = cursorPosition;
+			}
+			else if (cursorPosition >= textWidth - 1)
+			{
+				scrollOffset = cursorPosition - textWidth + 1;
+			}
+		}
+
+		void deleteSelection()
+		{
+			if (!hasSelection) return;
+
+			size_t start = std::min(selectionStart, cursorPosition);
+			size_t end = std::max(selectionStart, cursorPosition);
+
+			content.erase(start, end - start);
+			cursorPosition = start;
+			hasSelection = false;
+		}
+
+		void selectAll()
+		{
+			selectionStart = 0;
+			cursorPosition = content.length();
+			hasSelection = true;
+		}
 	};
 	// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 	// 增强的按钮控件（支持鼠标悬停和点击效果）
 	class Button : public Control {
-	private:
-		std::function<void()> clickHandler;
-
 	public:
 		Button(const Rect& rect = Rect(), const std::string& text = "")
 			: Control(rect, text)
@@ -668,19 +1149,6 @@ namespace wbwConsoleGUI
 
 			std::cout << "[" << text << "]";
 			Color::reset();
-		}
-
-		void onClick() override
-		{
-			if (enabled && clickHandler)
-			{
-				clickHandler();
-			}
-		}
-
-		void setOnClick(const std::function<void()>& handler)
-		{
-			clickHandler = handler;
 		}
 	};
 	// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
@@ -752,6 +1220,8 @@ namespace wbwConsoleGUI
 				{
 					changeHandler(checked);
 				}
+				if (clickHandler)
+					clickHandler();
 			}
 		}
 
@@ -932,7 +1402,7 @@ namespace wbwConsoleGUI
 				}
 				else
 				{
-					Color::setColor(colors.background, colors.background);
+					Color::setColor(colors.progress, colors.background);
 					std::cout << "<";  // 空心方块
 				}
 			}
@@ -972,23 +1442,23 @@ namespace wbwConsoleGUI
 		{
 			int progressWidth = getProgressWidth();
 			int barWidth = bounds.size.width;
-			int blockCount = barWidth / 2;  // 每个块占2个字符宽度
+			int blockCount = barWidth;  // 每个块占1个字符宽度
 
 			Console::setCursorPosition(bounds.position.x, bounds.position.y);
 
-			int completedBlocks = progressWidth / 2.00;
+			int completedBlocks = progressWidth;
 
 			for (int i = 0; i < blockCount; i++)
 			{
 				if (i < completedBlocks)
 				{
 					Color::setColor(colors.progress, colors.progress);
-					std::cout << "■";  // 实心方块
+					std::cout << "[";  // 实心方块
 				}
 				else
 				{
 					Color::setColor(colors.background, colors.background);
-					std::cout << "□";  // 空心方块
+					std::cout << "]";  // 空心方块
 				}
 			}
 
@@ -1066,9 +1536,11 @@ namespace wbwConsoleGUI
 	private:
 		std::vector<Control*> controls;
 		MouseInput mouse;
-		bool running, showDebug = false;
+		bool running;
 
 	public:
+		bool showDebug = false;
+
 		Application() : running(false) { }
 
 		~Application()
@@ -1094,6 +1566,48 @@ namespace wbwConsoleGUI
 			{
 				// 更新鼠标状态
 				mouse.update();
+
+				// 处理键盘输入
+				if (_kbhit())
+				{
+					int ch = _getch();
+
+					// 处理特殊键（方向键等）
+					if (ch == 0 || ch == 224)
+					{
+						int specialKey = _getch();
+						for (auto control : controls)
+						{
+							TextBox* textBox = dynamic_cast<TextBox*>(control);
+							if (textBox)
+							{
+								textBox->handleSpecialKey(specialKey);
+							}
+						}
+					}
+					else
+					{
+						// 处理普通键
+						for (auto control : controls)
+						{
+							TextBox* textBox = dynamic_cast<TextBox*>(control);
+							if (textBox)
+							{
+								textBox->handleKeyInput(ch);
+							}
+						}
+					}
+				}
+
+				if (mouse.isLeftClick())
+					for (auto control : controls)
+					{
+						TextBox* textBox = dynamic_cast<TextBox*>(control);
+						if (textBox)
+						{
+							textBox->setFocus(false);
+						}
+					}
 
 				// 处理所有控件的鼠标事件
 				for (auto control : controls)
