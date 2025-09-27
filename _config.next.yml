@@ -110,7 +110,7 @@ menu:
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: false
+  badges: true
 
 
 # ---------------------------------------------------------------
@@ -174,7 +174,7 @@ social:
 social_icons:
   enable: true
   icons_only: false
-  transition: false
+  transition: true
 
 # Blog rolls
 links_settings:
@@ -209,7 +209,7 @@ toc:
 # ---------------------------------------------------------------
 
 # Show multilingual switcher in footer.
-language_switcher: false
+language_switcher: true
 
 footer:
   # Specify the year when the site was setup. If not defined, current year will be used.
@@ -271,14 +271,14 @@ symbols_count_time:
   item_text_total: true
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
-tag_icon: false
+tag_icon: true
 
 # Donate (Sponsor) settings
 # Front-matter variable (nonsupport animation).
 reward_settings:
   # If true, a donate button will be displayed in every article by default.
-  enable: true
-  animation: true
+  enable: false
+  animation: false
 
 reward:
   #wechatpay: /images/wechatpay.png
@@ -301,7 +301,7 @@ follow_me:
 # Related popular posts
 # Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
 related_posts:
-  enable: true
+  enable: false
   icon: fa fa-signs-post
 
 # Post edit
@@ -1007,6 +1007,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
