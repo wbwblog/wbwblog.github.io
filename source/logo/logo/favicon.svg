@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="400px" height="200px"><svg width="400px" height="200px" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <text textLength="350" font-size="92" x="25" y="128" fill="rgb(128, 128, 128)">
+        wbwblog
+    </text>
+    <rect x="20" y="20" width="355" height="10" fill="rgb(128, 128, 128)"></rect>
+    <rect x="20" y="170" width="355" height="10" fill="rgb(128, 128, 128)"></rect>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: contrast(1) brightness(0.1); } }
+@media (prefers-color-scheme: dark) { :root { filter: contrast(0.3846153846153846) brightness(4.5); } }
+</style></svg>
