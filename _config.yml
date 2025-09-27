@@ -8,7 +8,9 @@ subtitle: wbw121124的博客
 description: ''
 keywords:
 author: wbw121124
-language: zh-CN
+language: 
+  - zh-CN
+  - en
 timezone: 'Asia/Shanghai'
 
 # URL
