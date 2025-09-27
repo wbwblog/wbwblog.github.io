@@ -39,7 +39,7 @@ $$dp_x=dep_x+\sum^{nxt}_{nxt\in children_x}dp_{nxt}$$
 
 设 $f_{nxt}=ff$，则：
 
-$$\begin{align}ff & = (f_x-ff)+(n-size_{nxt})+(ff-size_{nxt})\\&=f_x-2size_{nxt}+n\end{align}$$
+$$\begin{aligned}ff & = (f_x-ff)+(n-size_{nxt})+(ff-size_{nxt})\\&=f_x-2size_{nxt}+n\end{aligned}$$
 
 当然，这道题因为求的是选择的结点编号，所以可以不设 $dp_i$（不推荐）。
 
