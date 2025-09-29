@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/12/31/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>吾辈自强，勿忘九一八！</title>
     <url>/2025/09/17/918/</url>
     <content><![CDATA[<blockquote>
@@ -64,6 +44,26 @@
         <tag>政治</tag>
         <tag>新闻</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/12/31/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>二分图</title>
@@ -215,8 +215,8 @@
 ]]></content>
       <categories>
         <category>编程</category>
-        <category>动态规划</category>
         <category>算法</category>
+        <category>动态规划</category>
         <category>区间dp</category>
       </categories>
       <tags>
@@ -255,8 +255,8 @@
 ]]></content>
       <categories>
         <category>编程</category>
-        <category>动态规划</category>
         <category>算法</category>
+        <category>动态规划</category>
         <category>区间dp</category>
       </categories>
       <tags>
@@ -321,8 +321,8 @@
 ]]></content>
       <categories>
         <category>编程</category>
-        <category>动态规划</category>
         <category>算法</category>
+        <category>动态规划</category>
         <category>区间dp</category>
       </categories>
       <tags>
@@ -521,8 +521,8 @@
 ]]></content>
       <categories>
         <category>编程</category>
-        <category>动态规划</category>
         <category>算法</category>
+        <category>动态规划</category>
         <category>树形结构</category>
       </categories>
       <tags>
@@ -588,8 +588,8 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> int32;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">30</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, m, k, x, y, a[N], b[N][N];</span><br><span class="line"><span class="type">double</span> dp[<span class="number">1</span> &lt;&lt; <span class="number">8</span>][N], ans;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;nbr[N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; x &gt;&gt; y)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!n)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">			cin &gt;&gt; a[i];</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">			nbr[i].<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= k; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> x, y;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">			cin &gt;&gt; b[x][y];</span><br><span class="line">			b[y][x] = b[x][y];</span><br><span class="line">			nbr[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">			nbr[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">		&#125;</span><br><span class="line">		ans = <span class="number">1e9</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">				dp[i][j] = <span class="number">1e9</span>;</span><br><span class="line">		dp[<span class="number">0</span>][x] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">				<span class="keyword">if</span> ((i &gt;&gt; j) &amp; <span class="number">1</span>)</span><br><span class="line">					<span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= m; k++)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">for</span> (<span class="keyword">auto</span>&amp; nxt : nbr[k])</span><br><span class="line">							dp[i][k] = <span class="built_in">min</span>(dp[i][k], dp[i ^ (<span class="number">1</span> &lt;&lt; j)][nxt] +</span><br><span class="line">								b[k][nxt] * <span class="number">1.00</span> / a[j]);</span><br><span class="line">						<span class="keyword">if</span> (k == y)</span><br><span class="line">							ans = <span class="built_in">min</span>(ans, dp[i][k]);</span><br><span class="line">					&#125;</span><br><span class="line">		<span class="keyword">if</span> (ans == <span class="number">1e9</span>)</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;Impossible\n&quot;</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cout &lt;&lt; fixed &lt;&lt; <span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>编程</category>
-        <category>动态规划</category>
         <category>算法</category>
+        <category>动态规划</category>
         <category>状态压缩</category>
       </categories>
       <tags>
@@ -668,8 +668,8 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> int32;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> t, dx[] = &#123; <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span> &#125;, dy[] = &#123; <span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span> &#125;;</span><br><span class="line">map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;mp;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">work</span><span class="params">(<span class="type">int</span> z, <span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> nx = x + dx[i], ny = y + dy[i];</span><br><span class="line">		<span class="keyword">if</span> (nx &lt; <span class="number">6</span> &amp;&amp; nx &amp;&amp; ny &lt; <span class="number">6</span> &amp;&amp; ny)</span><br><span class="line">			z ^= <span class="number">1</span> &lt;&lt; ((nx - <span class="number">1</span>) * <span class="number">5</span> + ny - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z = (<span class="number">1</span> &lt;&lt; <span class="number">25</span>) - <span class="number">1</span>, <span class="type">int</span> sum = <span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (sum &gt; <span class="number">6</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	mp[z] = sum;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">6</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="built_in">dfs</span>(x + !(y % <span class="number">5</span>), y % <span class="number">5</span> + <span class="number">1</span>, z, sum);</span><br><span class="line">	<span class="built_in">dfs</span>(x + !(y % <span class="number">5</span>), y % <span class="number">5</span> + <span class="number">1</span>, <span class="built_in">work</span>(z, x, y), sum + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	cin &gt;&gt; t;</span><br><span class="line">	<span class="keyword">while</span> (t--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">25</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">char</span> c;</span><br><span class="line">			cin &gt;&gt; c;</span><br><span class="line">			sum |= (c - <span class="string">&#x27;0&#x27;</span>) &lt;&lt; (<span class="number">25</span> - i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!mp.<span class="built_in">count</span>(sum))</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cout &lt;&lt; mp[sum] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>编程</category>
-        <category>动态规划</category>
         <category>算法</category>
+        <category>动态规划</category>
         <category>状态压缩</category>
       </categories>
       <tags>
@@ -767,8 +767,8 @@
       <categories>
         <category>编程</category>
         <category>算法</category>
-        <category>总结</category>
         <category>连通性问题</category>
+        <category>总结</category>
       </categories>
       <tags>
         <tag>总结</tag>
