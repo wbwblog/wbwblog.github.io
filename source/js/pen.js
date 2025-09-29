@@ -585,6 +585,317 @@ document.addEventListener('DOMContentLoaded', function () {
 	    window.setExternalLinkIcons = setExternalLinkIcons;
 	})();
 
+// // 修复滚动高度问题的链接预览
+// class LinkPreview {
+// 	constructor() {
+// 		this.preview = null;
+// 		this.container = null;
+// 		this.timer = null;
+// 		this.currentUrl = null;
+// 		this.isLoading = false;
+// 		this.isMouseOverPreview = false;
+// 		this.currentMouseX = 0;
+// 		this.currentMouseY = 0;
+// 		this.init();
+// 	}
+
+// 	init() {
+// 		this.createPreviewContainer();
+// 		this.bindHoverEvents();
+// 		this.bindPJAXEvents();
+// 		this.bindMouseMove();
+// 	}
+
+// 	createPreviewContainer() {
+// 		const existingContainer = document.querySelector('.link-preview-container');
+// 		if (existingContainer) {
+// 			existingContainer.remove();
+// 		}
+
+// 		this.container = document.createElement('div');
+// 		this.container.className = 'link-preview-container';
+// 		this.container.style.cssText = `
+//             position: fixed;
+//             z-index: 10000;
+//             pointer-events: none;
+//             opacity: 0;
+//             transition: opacity 0.3s ease;
+//             display: block;
+//         `;
+
+// 		this.preview = document.createElement('iframe');
+// 		this.preview.style.cssText = `
+//             width: 400px;
+//             height: 300px;
+//             border: 1px solid #e1e1e1;
+//             background: white;
+//             border-radius: 8px;
+//             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+//             pointer-events: none;
+//         `;
+
+// 		// this.preview.setAttribute('sandbox', 'allow-scripts allow-forms allow-popups');
+// 		// this.preview.setAttribute('loading', 'lazy');
+
+// 		this.container.appendChild(this.preview);
+// 		document.body.appendChild(this.container);
+
+// 		this.bindPreviewEvents();
+// 	}
+
+// 	bindPJAXEvents() {
+// 		const pjaxEvents = ['pjax:complete', 'pjax:success', 'pjax:end'];
+// 		pjaxEvents.forEach(event => {
+// 			document.addEventListener(event, () => {
+// 				this.reinitialize();
+// 			});
+// 		});
+
+// 		let currentUrl = window.location.href;
+// 		setInterval(() => {
+// 			if (window.location.href !== currentUrl) {
+// 				currentUrl = window.location.href;
+// 				this.reinitialize();
+// 			}
+// 		}, 200);
+// 	}
+
+// 	reinitialize() {
+// 		this.destroy();
+// 		setTimeout(() => {
+// 			this.init();
+// 		}, 100);
+// 	}
+
+// 	bindMouseMove() {
+// 		document.addEventListener('mousemove', (e) => {
+// 			this.currentMouseX = e.clientX;  // 不需要加滚动，clientX/Y 已经是相对于视口的
+// 			this.currentMouseY = e.clientY;
+// 		});
+// 	}
+
+// 	bindHoverEvents() {
+// 		const links = document.querySelectorAll('.post-body a[href^="http"]:not([href*="' + window.location.host + '"])');
+
+// 		links.forEach(link => {
+// 			if (link._previewHandlers) {
+// 				link.removeEventListener('mouseenter', link._previewHandlers.enter);
+// 				link.removeEventListener('mouseleave', link._previewHandlers.leave);
+// 				link.removeEventListener('mousemove', link._previewHandlers.move);
+// 			}
+// 		});
+
+// 		links.forEach(link => {
+// 			const enterHandler = (e) => this.handleMouseEnter(e, link);
+// 			const leaveHandler = this.handleMouseLeave.bind(this);
+// 			const moveHandler = (e) => this.handleMouseMoveOnLink(e);
+
+// 			link.addEventListener('mouseenter', enterHandler);
+// 			link.addEventListener('mouseleave', leaveHandler);
+// 			link.addEventListener('mousemove', moveHandler);
+
+// 			link._previewHandlers = {
+// 				enter: enterHandler,
+// 				leave: leaveHandler,
+// 				move: moveHandler
+// 			};
+// 		});
+// 	}
+
+// 	bindPreviewEvents() {
+// 		this.container.addEventListener('mouseenter', () => {
+// 			this.isMouseOverPreview = true;
+// 		});
+
+// 		this.container.addEventListener('mouseleave', () => {
+// 			this.isMouseOverPreview = false;
+// 			this.hidePreview();
+// 		});
+// 	}
+
+// 	handleMouseEnter(e, link) {
+// 		const url = link.href;
+// 		if (!this.isValidUrl(url)) return;
+
+// 		this.currentMouseX = e.clientX;
+// 		this.currentMouseY = e.clientY;
+
+// 		if (this.timer) {
+// 			clearTimeout(this.timer);
+// 		}
+
+// 		this.timer = setTimeout(() => {
+// 			this.showPreview(url);
+// 		}, 600);
+// 	}
+
+// 	handleMouseMoveOnLink(e) {
+// 		this.currentMouseX = e.clientX;
+// 		this.currentMouseY = e.clientY;
+
+// 		if (this.container.style.opacity === '1') {
+// 			this.updatePosition();
+// 		}
+// 	}
+
+// 	handleMouseLeave(e) {
+// 		if (this.timer) {
+// 			clearTimeout(this.timer);
+// 			this.timer = null;
+// 		}
+
+// 		setTimeout(() => {
+// 			if (!this.isMouseOverPreview) {
+// 				this.hidePreview();
+// 			}
+// 		}, 200);
+// 	}
+
+// 	isValidUrl(url) {
+// 		try {
+// 			const urlObj = new URL(url);
+
+// 			// 判断是不是网页
+// 			if (!['http:', 'https:'].includes(urlObj.protocol)) {
+// 				return false;
+// 			}
+
+// 			if (urlObj.hostname === window.location.hostname) {
+// 				return false;
+// 			}
+
+// 			if (urlObj.pathname.match(/\.(jpg|jpeg|png|gif|bmp|svg|webp|mp4|mp3|avi|mkv|pdf|doc|docx|xls|xlsx|ppt|pptx|zip|rar)$/i)) {
+// 				return false;
+// 			}
+
+// 			return true;
+// 		} catch {
+// 			return false;
+// 		}
+// 	}
+
+// 	showPreview(url) {
+// 		if (this.currentUrl === url || this.isLoading) return;
+
+// 		this.currentUrl = url;
+// 		this.isLoading = true;
+
+// 		this.updatePosition();
+// 		this.container.style.opacity = '1';
+
+// 		this.preview.src = url;
+
+// 		this.preview.onload = () => {
+// 			this.isLoading = false;
+// 		};
+
+// 		this.preview.onerror = () => {
+// 			this.isLoading = false;
+// 			this.hidePreview();
+// 		};
+// 	}
+
+// 	updatePosition() {
+// 		const viewportWidth = window.innerWidth;
+// 		const viewportHeight = window.innerHeight;
+
+// 		// 使用 clientX/clientY，它们是相对于视口的，不需要加滚动距离
+// 		const mouseX = this.currentMouseX;
+// 		const mouseY = this.currentMouseY;
+
+// 		const previewWidth = 400;
+// 		const previewHeight = 300;
+
+// 		// 计算位置 - 直接使用 clientX/clientY
+// 		let left = mouseX + 15;
+// 		let top = mouseY + 15;
+
+// 		// 如果右边空间不够，显示在鼠标左侧
+// 		if (left + previewWidth > viewportWidth) {
+// 			left = mouseX - previewWidth - 15;
+// 		}
+
+// 		// 如果下边空间不够，显示在鼠标上方
+// 		if (top + previewHeight > viewportHeight) {
+// 			top = mouseY - previewHeight - 15;
+// 		}
+
+// 		// 确保在视口内
+// 		left = Math.max(10, Math.min(left, viewportWidth - previewWidth - 10));
+// 		top = Math.max(10, Math.min(top, viewportHeight - previewHeight - 10));
+
+// 		this.container.style.left = left + 'px';
+// 		this.container.style.top = top + 'px';
+// 	}
+
+// 	hidePreview() {
+// 		this.container.style.opacity = '0';
+// 		this.currentUrl = null;
+// 		this.isLoading = false;
+
+// 		setTimeout(() => {
+// 			if (this.container.style.opacity === '0') {
+// 				this.preview.src = 'about:blank';
+// 			}
+// 		}, 300);
+// 	}
+
+// 	destroy() {
+// 		if (this.timer) {
+// 			clearTimeout(this.timer);
+// 		}
+// 		if (this.container && this.container.parentNode) {
+// 			this.container.parentNode.removeChild(this.container);
+// 		}
+
+// 		const links = document.querySelectorAll('a[href^="http"]');
+// 		links.forEach(link => {
+// 			if (link._previewHandlers) {
+// 				link.removeEventListener('mouseenter', link._previewHandlers.enter);
+// 				link.removeEventListener('mouseleave', link._previewHandlers.leave);
+// 				link.removeEventListener('mousemove', link._previewHandlers.move);
+// 				delete link._previewHandlers;
+// 			}
+// 		});
+// 	}
+// }
+
+// // 全局实例管理
+// let linkPreviewInstance = null;
+
+// function initLinkPreview() {
+// 	if (linkPreviewInstance) {
+// 		linkPreviewInstance.destroy();
+// 	}
+// 	linkPreviewInstance = new LinkPreview();
+// }
+
+// // 初始化
+// function setupLinkPreview() {
+// 	setTimeout(initLinkPreview, 0);
+
+// 	if (document.readyState === 'loading') {
+// 		document.addEventListener('DOMContentLoaded', initLinkPreview);
+// 	}
+
+// 	const pjaxEvents = ['pjax:complete', 'pjax:success', 'pjax:end'];
+// 	pjaxEvents.forEach(event => {
+// 		document.addEventListener(event, () => {
+// 			setTimeout(initLinkPreview, 50);
+// 		});
+// 	});
+
+// 	window.addEventListener('beforeunload', () => {
+// 		if (linkPreviewInstance) {
+// 			linkPreviewInstance.destroy();
+// 		}
+// 	});
+// }
+
+// // 启动
+// setupLinkPreview();
+	
 });
+
 
 
