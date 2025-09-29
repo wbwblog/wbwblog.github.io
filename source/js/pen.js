@@ -492,6 +492,43 @@ document.addEventListener('DOMContentLoaded', function () {
 				'<p class="__temp__errorDay"><strong>警告</strong><br/>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。</p>' +
 				'</div>';
 		}
-	}, 100);
+	}, 1000);
+
+	{// 主函数：为外链添加图标
+function setExternalLinkIcons() {
+    const allLinks = document.querySelectorAll('a[href]');
+    const currentHost = window.location.hostname;
+    
+    allLinks.forEach(link => {
+        try {
+            const url = new URL(link.href);
+            // 判断是否为外链
+            if (url.hostname !== currentHost && !link.querySelector('.fa-external-link-alt')) {
+                // 创建图标元素
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-external-link-alt';
+                icon.style.marginLeft = '4px';
+                icon.style.fontSize = '0.8em';
+                icon.style.opacity = '0.7';
+                
+                // 添加到链接中
+                link.appendChild(icon);
+                
+                // 可选：添加提示信息
+                link.setAttribute('title', link.getAttribute('title') || '外部链接');
+            }
+        } catch (e) {
+            // 处理无效URL
+            console.log('无效链接:', link.href);
+        }
+    });
+}
+
+// 使用 setInterval 持续检测，适合 PJAX
+let linkCheckInterval = setInterval(setExternalLinkIcons, 1000);
+
+// 初始执行
+setExternalLinkIcons();}
 
 });
+
