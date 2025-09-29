@@ -79,10 +79,10 @@ creative_commons:
 open_graph:
   enable: true
   options:
-    type: blog
-    author: wbw121124
-    language: zh-CN
-    description: wbw121124's blog
+    type: article
+    # author: wbw121124
+    # language: zh-CN
+    # description: wbw121124's blog
     #twitter_card: <twitter:card>
     #twitter_id: <twitter:creator>
     #twitter_site: <twitter:site>
@@ -1013,6 +1013,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
