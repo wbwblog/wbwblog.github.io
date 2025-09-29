@@ -494,41 +494,97 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}, 1000);
 
-	{// 主函数：为外链添加图标
-function setExternalLinkIcons() {
-    const allLinks = document.querySelectorAll('a[href]');
-    const currentHost = window.location.hostname;
-    
-    allLinks.forEach(link => {
-        try {
-            const url = new URL(link.href);
-            // 判断是否为外链
-            if (url.hostname !== currentHost && !link.querySelector('.fa-external-link-alt')) {
-                // 创建图标元素
-                const icon = document.createElement('i');
-                icon.className = 'fas fa-external-link-alt';
-                icon.style.marginLeft = '4px';
-                icon.style.fontSize = '0.8em';
-                icon.style.opacity = '0.7';
-                
-                // 添加到链接中
-                link.appendChild(icon);
-                
-                // 可选：添加提示信息
-                link.setAttribute('title', link.getAttribute('title') || '外部链接');
-            }
-        } catch (e) {
-            // 处理无效URL
-            console.log('无效链接:', link.href);
-        }
-    });
-}
-
-// 使用 setInterval 持续检测，适合 PJAX
-let linkCheckInterval = setInterval(setExternalLinkIcons, 1000);
-
-// 初始执行
-setExternalLinkIcons();}
+	// 专为 Hexo Next 主题设计的外链图标，使用 MIT 协议开源
+	(function() {
+	    // 检查是否已加载 Font Awesome
+	    function loadFontAwesome() {
+	        if (!document.querySelector('link[href*="font-awesome"], link[href*="fontawesome"]')) {
+	            const faLink = document.createElement('link');
+	            faLink.rel = 'stylesheet';
+	            faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+	            document.head.appendChild(faLink);
+	        }
+	    }
+	
+	    function setExternalLinkIcons() {
+	        const allLinks = document.querySelectorAll('a[href]:not(.fa):not([href^="#"]):not([href^="javascript:"])');
+	        const currentHost = window.location.hostname;
+	        
+	        allLinks.forEach(link => {
+	            // 排除 Next 主题的特殊链接
+	            if (shouldSkipLink(link)) return;
+	            
+	            try {
+	                const url = new URL(link.href);
+	                if (isExternalLink(url, currentHost) && !hasExternalIcon(link)) {
+	                    addExternalIcon(link);
+	                }
+	            } catch (e) {
+	                // 无效 URL，跳过
+	            }
+	        });
+	    }
+	
+	    function shouldSkipLink(link) {
+	        // Next 主题需要跳过的链接选择器
+	        const skipSelectors = [
+	            '.site-nav a',
+	            '.menu-item a', 
+	            '.pagination a',
+	            '.post-nav a',
+	            '.post-meta a',
+	            '.footer a',
+	            '.links a',
+	            '[data-fancybox]',
+	            '.fancybox',
+	            '.header-nav a',
+	            '.sidebar a',
+	            '.widget a',
+	            '.tag-cloud a',
+	            '.category-list a',
+				'.post-header a',
+				'.social-item a'
+	        ];
+	        
+	        return skipSelectors.some(selector => link.closest(selector));
+	    }
+	
+	    function isExternalLink(url, currentHost) {
+	        return url.hostname && 
+	               url.hostname !== currentHost && 
+	               url.hostname !== '' &&
+	               !url.hostname.includes('localhost') &&
+	               !url.hostname.includes('127.0.0.1');
+	    }
+	
+	    function hasExternalIcon(link) {
+	        return link.querySelector('.fa-external-link-alt, .fa-up-right-from-square, .fa-external-link');
+	    }
+	
+	    function addExternalIcon(link) {
+	        const icon = document.createElement('i');
+	        icon.className = 'fas fa-external-link-alt';
+	        icon.style.cssText = 'margin-left: 4px; font-size: 0.8em;';
+	        link.appendChild(icon);
+	    }
+	
+	    // 不需要初始化
+	    // loadFontAwesome();
+	    
+	    // // 设置定时检测
+	    // setInterval(setExternalLinkIcons, 1000);
+	    
+	    // // 各种事件监听
+	    setTimeout(setExternalLinkIcons, 500);
+	    // document.addEventListener('DOMContentLoaded', setExternalLinkIcons);
+	    document.addEventListener('pjax:complete', function() {
+	        setTimeout(setExternalLinkIcons, 500);
+	    });
+	
+	    // 支持手动调用
+	    window.setExternalLinkIcons = setExternalLinkIcons;
+	})();
 
 });
+
 
