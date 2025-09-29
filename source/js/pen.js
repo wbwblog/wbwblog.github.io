@@ -543,7 +543,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	            '.tag-cloud a',
 	            '.category-list a',
 				'.post-header a',
-				'.social-item a'
+				'.social-item a',
+				'a.image'
 	        ];
 	        
 	        return skipSelectors.some(selector => link.closest(selector));
@@ -896,6 +897,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // setupLinkPreview();
 	
 });
+
 
 
 
