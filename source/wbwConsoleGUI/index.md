@@ -38,23 +38,37 @@ GPLv3.0 - 由 wbw121124 开发
 ### 基本使用示例
 
 ```cpp
-#include "wbwConsoleGUI.h"
-
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
+#include "wbwConsoleGUI.h"
+#include <omp.h>
+#ifdef _MSC_VER
+#pragma comment(lib, "fopenmp.lib")
+#elif defined(__GNUC__)
+#warning 使用MinGW编译时, 应在命令行中链接库: `-fopenmp`
+#endif
+// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
+using namespace wbwConsoleGUI;
+Application app;
+Button* button3 = new Button(Rect(10, 7, 8, 1), "按钮3");
+ProgressBar* progressbar = new ProgressBar(Rect(0, 8, 100, 1));
+int cnt, tot;
 // 使用示例
+void run(int x)
+{
+	if (x == 1)
+		app.run();
+	else
+		while (true)
+			progressbar->setValue(++cnt %= 101), Sleep(250);
+	return;
+}
 int main()
 {
-	using namespace wbwConsoleGUI;
 	Console::disableQuickEditMode();
-
-	Application app;
-
 	app.showDebug = true;
-
 	// 创建控件
 	Label* title = new Label(Rect(0, 2, 30, 1), "=== 控制台GUI演示 ===");
 	title->setColors(Color::BRIGHT_MAGENTA, Color::BLACK);
-
 	Button* button1 = new Button(Rect(0, 5, 8, 1), "按钮1");
 	button1->setOnClick([]()
 		{
@@ -63,12 +77,8 @@ int main()
 			std::cout << "按钮1被点击了!                    ";
 			Color::reset();
 		});
-
-	ProgressBar* progressbar = new ProgressBar(Rect(0, 8, 100, 1));
 	progressbar->setShowValue(false);
 	progressbar->setStyle(ProgressBarStyle(0));
-	int cnt = 0, tot = 0;
-
 	Button* button2 = new Button(Rect(5, 6, 8, 1), "按钮2");
 	button2->setOnClick([&]()
 		{
@@ -78,8 +88,6 @@ int main()
 			std::cout << "按钮2被点击了!                    ";
 			Color::reset();
 		});
-
-	Button* button3 = new Button(Rect(10, 7, 8, 1), "按钮3");
 	button3->setOnClick([&]()
 		{
 			progressbar->setValue(++cnt %= 101);
@@ -88,8 +96,6 @@ int main()
 			std::cout << "按钮3被点击了!                    ";
 			Color::reset();
 		});
-
-
 	CheckBox* checkbox = new CheckBox(Rect(0, 9, 12, 1), "启用特性", false);
 	checkbox->setOnChange([](bool checked)
 		{
@@ -107,7 +113,6 @@ int main()
 			std::cout << "文本框获得焦点!                    ";
 			Color::reset();
 		});
-
 	// 添加清除按钮
 	Button* clearButton = new Button(Rect(22, 25, 8, 1), "清除");
 	clearButton->setOnClick([textBox]()
@@ -118,7 +123,6 @@ int main()
 			std::cout << "文本框已清除!                      ";
 			Color::reset();
 		});
-
 	// 添加显示文本按钮
 	Button* showButton = new Button(Rect(22, 27, 8, 1), "显示内容");
 	showButton->setOnClick([textBox]()
@@ -138,10 +142,8 @@ int main()
 	app.addControl(textBox);
 	app.addControl(clearButton);
 	app.addControl(showButton);
-
-	// 运行应用
-	app.run();
-
+#pragma omp parallel num_threads(2)
+	run(omp_get_thread_num());
 	return 0;
 }
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
@@ -332,7 +334,7 @@ if (app.getMouse().isLeftClick()) {
 ## wbwConsoleGUI.h
 
 ```cpp
-// wbwConsoleGUI - 1.0.0
+// wbwConsoleGUI - 1.0.5
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 #include <iostream>
 #include <string>
@@ -347,12 +349,12 @@ if (app.getMouse().isLeftClick()) {
 #include <chrono>
 #include <memory>
 #include <cmath>
-#define wbwConsoleGUIVer "1.0.0"
+#define wbwConsoleGUIVer "1.0.5"
 #ifdef _MSC_VER
 #pragma comment(lib, "gdi32.lib")
 #pragma comment(lib, "user32.lib")
 #elif defined(__GNUC__) && false
-#warning 使用MinGW编译时, 应在命令行中链接库: `-lgdi32 -luser32`
+#warning 使用MinGW编译时, 应在命令行中链接库: `-lgdi32 - luser32`
 #endif
 namespace wbwConsoleGUI
 {
@@ -393,11 +395,13 @@ namespace wbwConsoleGUI
 			HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
 			DWORD mode;
 			GetConsoleMode(hInput, &mode);
+			// mode = 0;
 			mode &= ~ENABLE_QUICK_EDIT_MODE;  // 禁用快速编辑
 			mode &= ~ENABLE_INSERT_MODE;      // 禁用插入模式
-			mode |= ENABLE_EXTENDED_FLAGS;    // 启用扩展标志
+			mode &= ~ENABLE_EXTENDED_FLAGS;    // 启用扩展标志
 			mode &= ~ENABLE_ECHO_INPUT;
 			mode &= ~ENABLE_PROCESSED_INPUT;
+			mode &= ~ENABLE_WINDOW_INPUT;
 			SetConsoleMode(hInput, mode);
 		}
 
@@ -917,8 +921,8 @@ namespace wbwConsoleGUI
 			switch (key)
 			{
 			case 8: // Backspace
-				if (hasSelection)
-					deleteSelection();
+				if (hasSelection && deleteSelection())
+					;
 				else if (cursorPosition > 0)
 				{
 					content.erase(cursorPosition - 1, 1);
@@ -976,26 +980,30 @@ namespace wbwConsoleGUI
 			if (keyCode == 83)
 				if (hasSelection)
 				{
-					deleteSelection();
+					if (!deleteSelection() &&
+						cursorPosition < content.length())
+					{
+						content.erase(cursorPosition, 1);
+					}
 				}
 				else if (cursorPosition < content.length())
 				{
 					content.erase(cursorPosition, 1);
 				}
 
-			// // 处理选择（按住Shift） // ps:废了
-			// if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
-			// {
-			// 	if (!hasSelection)
-			// 	{
-			// 		selectionStart = cursorPosition;
-			// 		hasSelection = true;
-			// 	}
-			// }
-			// else
-			// {
-			// 	hasSelection = false;
-			// }
+			// 处理选择（按住Shift） // ps:好了
+			if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
+			{
+				if (!hasSelection)
+				{
+					selectionStart = cursorPosition;
+					hasSelection = true;
+				}
+			}
+			else
+			{
+				hasSelection = false;
+			}
 
 			updateScrollOffset();
 			resetCursorBlink();
@@ -1095,16 +1103,29 @@ namespace wbwConsoleGUI
 			}
 		}
 
-		void deleteSelection()
+		bool deleteSelection()
 		{
-			if (!hasSelection) return;
+			if (!hasSelection) return true;
 
 			size_t start = std::min(selectionStart, cursorPosition);
 			size_t end = std::max(selectionStart, cursorPosition);
+			if (selectionStart + 1 == cursorPosition)
+			{
+				hasSelection = false;
+				cursorPosition = start + 1;
+				return false;
+			}
+			if (selectionStart - 1 == cursorPosition)
+			{
+				hasSelection = false;
+				cursorPosition = start;
+				return false;
+			}
 
-			content.erase(start, end - start);
+			content.erase(start, end - start + 1);
 			cursorPosition = start;
 			hasSelection = false;
+			return true;
 		}
 
 		void selectAll()
