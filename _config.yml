@@ -228,7 +228,7 @@ title_change:
 
   # Options when window is hidden.
   hidden:
-    favicon: /images/favicon-32x32-next.png
+    favicon: /logo/logo/favicon.svg
     title: hiding | wbw121124\'s Blog
       #- 404
       #- φ(*￣0￣)
@@ -236,7 +236,7 @@ title_change:
 
   # Options when window is visible.
   visible:
-    favicon: /images/favicon-32x32-next.png
+    favicon: /logo/logo/favicon.svg
     title: welcome back to wbw121124\'s Blog
       #- 200
       #- (✿◡‿◡)
