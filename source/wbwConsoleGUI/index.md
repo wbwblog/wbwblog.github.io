@@ -4,337 +4,198 @@ date: 2025-09-25 00:00:00
 layout: "page"
 ---
 
-{% note warning %}
-#### 版本更新了，但是文档没有更新！！！
-{% endnote %}
-
 # wbwConsoleGUI - 控制台图形用户界面库
 
-## 概述
+## 简介
 
-wbwConsoleGUI 是一个基于 C++ 开发的轻量级控制台图形用户界面库，使用 Windows API 实现。该库提供了在 Windows 控制台环境中创建交互式 GUI 应用程序的能力，支持按钮、标签、复选框、进度条等常见控件，并包含完整的鼠标事件处理。
+**wbwConsoleGUI** 是一个基于 C++ 和 Windows API 的轻量级控制台 GUI 库，支持在 Windows 控制台中实现交互式界面。它提供按钮、标签、复选框、进度条等控件，并支持完整的鼠标事件处理。
 
-## 许可证
+- **许可证**: GPLv3.0
+- **作者**: wbw121124
 
-GPLv3.0 - 由 wbw121124 开发
+## 主要特性
 
-## 功能特性
+- **跨编译器支持**：兼容 MSVC 和 MinGW
+- **鼠标交互**：支持点击、悬停、移动等事件
+- **丰富控件**：按钮、标签、复选框、进度条
+- **颜色支持**：16 种控制台颜色
+- **高效渲染**：实时界面刷新
 
-### 核心功能
-- **跨编译器支持**: 兼容 MSVC 和 MinGW 编译器
-- **鼠标交互**: 完整的鼠标事件处理（点击、悬停、移动）
-- **多种控件**: 按钮、标签、复选框、进度条
-- **颜色支持**: 16 种控制台颜色配置
-- **实时渲染**: 高效的界面更新机制
+## 快速入门
 
-### 控件特性
-- **按钮**: 支持点击事件，悬停和按下状态可视化
-- **标签**: 支持文本显示和悬停效果
-- **复选框**: 支持选中状态切换和事件回调
-- **进度条**: 多种样式（经典、现代、渐变、块状），支持动画和百分比显示
-
-## 快速开始
-
-### 基本使用示例
+### 示例代码
 
 ```cpp
-// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 #include "wbwConsoleGUI.h"
-#include <omp.h>
-#ifdef _MSC_VER
-#pragma comment(lib, "fopenmp.lib")
-#elif defined(__GNUC__)
-#warning 使用MinGW编译时, 应在命令行中链接库: `-fopenmp`
-#endif
-// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 using namespace wbwConsoleGUI;
+
 Application app;
-Button* button3 = new Button(Rect(10, 7, 8, 1), "按钮3");
-ProgressBar* progressbar = new ProgressBar(Rect(0, 8, 100, 1));
-int cnt, tot;
-// 使用示例
-void run(int x)
-{
-	if (x == 1)
-		app.run();
-	else
-		while (true)
-			progressbar->setValue(++cnt %= 101), Sleep(250);
-	return;
-}
-int main()
-{
+Button* btn = new Button(Rect(10, 7, 8, 1), "按钮");
+ProgressBar* bar = new ProgressBar(Rect(0, 8, 100, 1));
+
+int main() {
 	Console::disableQuickEditMode();
 	app.showDebug = true;
-	// 创建控件
+
 	Label* title = new Label(Rect(0, 2, 30, 1), "=== 控制台GUI演示 ===");
 	title->setColors(Color::BRIGHT_MAGENTA, Color::BLACK);
-	Button* button1 = new Button(Rect(0, 5, 8, 1), "按钮1");
-	button1->setOnClick([]()
-		{
-			Console::setCursorPosition(0, 12);
-			Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
-			std::cout << "按钮1被点击了!                    ";
-			Color::reset();
-		});
-	progressbar->setShowValue(false);
-	progressbar->setStyle(ProgressBarStyle(0));
-	Button* button2 = new Button(Rect(5, 6, 8, 1), "按钮2");
-	button2->setOnClick([&]()
-		{
-			progressbar->setStyle(ProgressBarStyle(++tot % 4));
-			Console::setCursorPosition(0, 12);
-			Color::setColor(Color::BRIGHT_RED, Color::BLACK);
-			std::cout << "按钮2被点击了!                    ";
-			Color::reset();
-		});
-	button3->setOnClick([&]()
-		{
-			progressbar->setValue(++cnt %= 101);
-			Console::setCursorPosition(0, 12);
-			Color::setColor(Color::BRIGHT_BLUE, Color::BLACK);
-			std::cout << "按钮3被点击了!                    ";
-			Color::reset();
-		});
-	CheckBox* checkbox = new CheckBox(Rect(0, 9, 12, 1), "启用特性", false);
-	checkbox->setOnChange([](bool checked)
-		{
-			Console::setCursorPosition(0, 13);
-			Color::setColor(Color::BRIGHT_CYAN, Color::BLACK);
-			std::cout << "复选框状态: " << (checked ? "已选中" : "未选中") << "        ";
-			Color::reset();
-		});
-	// 创建文本框
-	TextBox* textBox = new TextBox(Rect(0, 25, 20, 3), "输入框:");
-	textBox->setOnClick([]()
-		{
-			Console::setCursorPosition(0, 15);
-			Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
-			std::cout << "文本框获得焦点!                    ";
-			Color::reset();
-		});
-	// 添加清除按钮
-	Button* clearButton = new Button(Rect(22, 25, 8, 1), "清除");
-	clearButton->setOnClick([textBox]()
-		{
-			textBox->setText("");
-			Console::setCursorPosition(0, 15);
-			Color::setColor(Color::BRIGHT_RED, Color::BLACK);
-			std::cout << "文本框已清除!                      ";
-			Color::reset();
-		});
-	// 添加显示文本按钮
-	Button* showButton = new Button(Rect(22, 27, 8, 1), "显示内容");
-	showButton->setOnClick([textBox]()
-		{
-			Console::setCursorPosition(0, 16);
-			Color::setColor(Color::BRIGHT_CYAN, Color::BLACK);
-			std::cout << "文本框内容: \"" << textBox->getText() << "\"";
-			Color::reset();
-		});
-	// 添加控件到应用
+
+	btn->setOnClick([]() {
+		Console::setCursorPosition(0, 12);
+		Color::setColor(Color::BRIGHT_GREEN, Color::BLACK);
+		std::cout << "按钮被点击了!";
+		Color::reset();
+	});
+
+	bar->setValue(50);
+	bar->setStyle(ProgressBarStyle::Modern);
+
 	app.addControl(title);
-	app.addControl(button1);
-	app.addControl(button2);
-	app.addControl(button3);
-	app.addControl(progressbar);
-	app.addControl(checkbox);
-	app.addControl(textBox);
-	app.addControl(clearButton);
-	app.addControl(showButton);
-#pragma omp parallel num_threads(2)
-	run(omp_get_thread_num());
+	app.addControl(btn);
+	app.addControl(bar);
+
+	app.run();
 	return 0;
 }
-// wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 ```
 
-## API 文档
+## API 概览
 
-### 核心类
+### Application 类
 
-#### Application 类
-主应用程序类，管理控件和事件循环。
+- `void run()`：启动主循环
+- `void stop()`：停止应用
+- `void addControl(Control*)`：添加控件
+- `MouseInput& getMouse()`：获取鼠标输入
 
-**主要方法:**
-- `void run()`: 启动应用程序主循环
-- `void stop()`: 停止应用程序
-- `void addControl(Control*)`: 添加控件到应用
-- `MouseInput& getMouse()`: 获取鼠标输入对象
+### Control 基类
 
-#### Control 类（基类）
-所有控件的基类，提供基本属性和方法。
+- `Rect bounds`：位置和大小
+- `std::string text`：文本内容
+- `bool visible/enabled`：可见/启用状态
+- `virtual void draw()`：绘制控件
+- `virtual void handleMouse(const MouseInput&)`：处理鼠标事件
+- `virtual void onClick()`：点击回调
 
-**主要属性:**
-- `bounds`: 控件位置和大小（Rect 对象）
-- `text`: 控件文本
-- `visible`: 可见性
-- `enabled`: 启用状态
+### 常用控件
 
-**主要方法:**
-- `virtual void draw()`: 绘制控件（需子类实现）
-- `virtual void handleMouse(const MouseInput&)`: 处理鼠标事件
-- `virtual void onClick()`: 点击事件回调
-
-### 控件类
-
-#### Button 类
-按钮控件，支持点击事件。
+#### Button
 
 ```cpp
 Button* btn = new Button(Rect(10, 5, 12, 1), "点击我");
-btn->setOnClick([]() {
-    // 点击处理逻辑
-});
+btn->setOnClick([]() { /* 点击逻辑 */ });
 ```
 
-#### Label 类
-文本标签控件。
+#### Label
 
 ```cpp
-Label* label = new Label(Rect(5, 3, 20, 1), "这是一个标签");
+Label* label = new Label(Rect(5, 3, 20, 1), "标签");
 label->setColors(Color::BRIGHT_WHITE, Color::BLUE);
 ```
 
-#### CheckBox 类
-复选框控件。
+#### CheckBox
 
 ```cpp
-CheckBox* checkbox = new CheckBox(Rect(0, 8, 15, 1), "启用选项", false);
-checkbox->setOnChange([](bool checked) {
-    // 状态改变处理
-});
+CheckBox* cb = new CheckBox(Rect(0, 8, 15, 1), "启用选项", false);
+cb->setOnChange([](bool checked) { /* 状态变化逻辑 */ });
 ```
 
-#### ProgressBar 类
-进度条控件，支持多种样式。
+#### ProgressBar
 
 ```cpp
-ProgressBar* progress = new ProgressBar(Rect(0, 10, 30, 1), 0, 100);
-progress->setValue(50);
-progress->setStyle(ProgressBarStyle::Modern);
+ProgressBar* pb = new ProgressBar(Rect(0, 10, 30, 1), 0, 100);
+pb->setValue(50);
+pb->setStyle(ProgressBarStyle::Modern);
 ```
 
 ### 工具类
 
-#### Console 命名空间
-控制台操作工具函数。
+#### Console
 
-**主要函数:**
-- `void clear()`: 清空控制台
-- `void setCursorPosition(int x, int y)`: 设置光标位置
-- `void hideCursor()`: 隐藏光标
-- `Size getConsoleSize()`: 获取控制台尺寸
+- `clear()`：清屏
+- `setCursorPosition(x, y)`：设置光标
+- `hideCursor()`：隐藏光标
+- `getConsoleSize()`：获取尺寸
 
-#### Color 命名空间
-颜色控制功能。
+#### Color
 
-**颜色常量:**
-- 基本色: BLACK, BLUE, GREEN, RED 等
-- 高亮色: BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_RED 等
-
-**主要函数:**
-- `void setColor(int foreground, int background)`: 设置颜色
-- `void reset()`: 重置颜色
+- 常量：BLACK, BLUE, BRIGHT_GREEN 等
+- `setColor(fg, bg)`：设置颜色
+- `reset()`：重置颜色
 
 ### 数据结构
 
-#### Point 结构
-表示二维坐标点。
-```cpp
-Point p(10, 20);  // x=10, y=20
-```
-
-#### Size 结构
-表示尺寸。
-```cpp
-Size s(100, 50);  // width=100, height=50
-```
-
-#### Rect 结构
-表示矩形区域。
-```cpp
-Rect r(5, 5, 30, 10);  // x=5, y=5, width=30, height=10
-```
+- `Point(x, y)`：坐标点
+- `Size(w, h)`：尺寸
+- `Rect(x, y, w, h)`：矩形区域
 
 ## 编译说明
 
-### MSVC 编译器
-自动链接所需库，无需额外配置。
-
-### MinGW 编译器
-需要在编译命令中手动链接库：
-```bash
-g++ -o program main.cpp -lgdi32 -luser32
-```
+- **MSVC**：自动链接库
+- **MinGW**：需手动链接
+  ```bash
+  g++ -o program main.cpp -lgdi32 -luser32
+  ```
 
 ## 高级用法
 
 ### 自定义控件
-可以通过继承 `Control` 类创建自定义控件：
+
+继承 `Control` 可实现自定义控件：
 
 ```cpp
-class CustomControl : public Control {
+class MyControl : public Control {
 public:
-    CustomControl(const Rect& rect, const std::string& text) 
-        : Control(rect, text) {}
-    
-    void draw() override {
-        if (!visible) return;
-        
-        Console::setCursorPosition(bounds.position.x, bounds.position.y);
-        Color::setColor(foregroundColor, backgroundColor);
-        std::cout << "自定义: " << text;
-        Color::reset();
-    }
-    
-    void onClick() override {
-        // 自定义点击处理
-    }
+	void draw() override {
+		Console::setCursorPosition(bounds.position.x, bounds.position.y);
+		Color::setColor(foregroundColor, backgroundColor);
+		std::cout << "自定义控件: " << text;
+		Color::reset();
+	}
 };
 ```
 
-### 鼠标事件处理
-可以通过 `MouseInput` 类获取详细的鼠标状态：
+### 鼠标事件
+
+通过 `MouseInput` 获取鼠标状态：
 
 ```cpp
-Application app;
-// 在主循环中访问鼠标状态
 if (app.getMouse().isLeftClick()) {
-    POINT pos = app.getMouse().getPosition();
-    // 处理左键点击
+	POINT pos = app.getMouse().getPosition();
+	// 处理点击
 }
 ```
 
 ## 注意事项
 
-1. **控制台字体**: 建议使用等宽字体以获得最佳显示效果
-2. **快速编辑模式**: 库会自动禁用控制台的快速编辑模式以防止程序暂停
-3. **性能考虑**: 在控件较多时注意优化绘制逻辑
-4. **线程安全**: 当前版本非线程安全，需在单线程环境下使用
+- 建议使用等宽字体
+- 控制台快速编辑模式会自动禁用
+- 控件多时建议优化绘制逻辑
+- 当前版本非线程安全
 
 ## 示例程序
 
-库中包含完整的演示程序，展示所有控件的使用方法：
-- 创建多个按钮并处理点击事件
-- 使用复选框并监听状态变化
-- 显示不同样式的进度条
-- 实时显示鼠标位置信息
+演示程序包含：
+
+- 多按钮点击
+- 复选框状态监听
+- 多样式进度条
+- 实时鼠标位置显示
 
 ## 版本信息
 
-- **开发者**: wbw121124
-- **许可证**: GPLv3.0
-- **最后更新**: 文档创建日期
+- 开发者: wbw121124
+- 许可证: GPLv3.0
+- 文档日期: 2025-09-25
 
 ## 技术支持
 
-如有问题或建议，请联系开发者或提交问题报告。
+如有问题或建议，请联系开发者或提交 issue。
 
 ## wbwConsoleGUI.h
 
 ```cpp
-// wbwConsoleGUI - 1.0.5
+// wbwConsoleGUI - 1.0.10
 // wbwConsoleGUI - dev by wbw121124 - GPLv3.0
 #include <iostream>
 #include <string>
@@ -349,7 +210,7 @@ if (app.getMouse().isLeftClick()) {
 #include <chrono>
 #include <memory>
 #include <cmath>
-#define wbwConsoleGUIVer "1.0.5"
+#define wbwConsoleGUIVer "1.0.10"
 #ifdef _MSC_VER
 #pragma comment(lib, "gdi32.lib")
 #pragma comment(lib, "user32.lib")
@@ -1583,6 +1444,13 @@ namespace wbwConsoleGUI
 			Console::hideCursor();
 			Console::clear();
 
+			Console::setCursorPosition(0, 0);
+			Color::setColor(Color::BRIGHT_YELLOW, Color::BLACK);
+			std::cout << "请关闭控制台的 Ctrl 键快捷方式和扩展的文本选择键选项";
+			Sleep(1000);
+
+			Console::clear();
+
 			while (running)
 			{
 				// 更新鼠标状态
@@ -1648,7 +1516,7 @@ namespace wbwConsoleGUI
 					POINT pos = mouse.getPosition();
 					Console::setCursorPosition(0, 0);
 					Color::setColor(Color::BRIGHT_WHITE, Color::BLUE);
-					std::cout << "鼠标: (" << pos.x << ", " << pos.y << ")    ";
+					std::cout << "鼠标: (" << pos.x << ", " << pos.y << ")      ";
 					Color::reset();
 				}
 
