@@ -23,22 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wbwblog.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":true,"nav":{"utterances":{"order":-1}},"activeClass":"utterances"},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="wbw121124&#39;s blog">
-<meta property="og:url" content="https://wbwblog.github.io/index.html">
+    <meta name="description" content="树链剖分 是一种将一棵树划分为若干条链的思想，划分后每个树上结点恰好在一条链中。 而一条链又可以转化为一段连续的区间，从而将树上问题转换为序列问题。  树链剖分的常见方式  重链剖分 长链剖分 实链剖分  以重链剖分最常用。  重链剖分的步骤  dfs 预处理树上每个点的 sizex\mathrm{size}_xsizex​；以及重儿子 sonx\mathrm{son}_xsonx​； 将根结点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树链剖分">
+<meta property="og:url" content="https://wbwblog.github.io/2025/09/30/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/index.html">
 <meta property="og:site_name" content="wbw121124&#39;s blog">
+<meta property="og:description" content="树链剖分 是一种将一棵树划分为若干条链的思想，划分后每个树上结点恰好在一条链中。 而一条链又可以转化为一段连续的区间，从而将树上问题转换为序列问题。  树链剖分的常见方式  重链剖分 长链剖分 实链剖分  以重链剖分最常用。  重链剖分的步骤  dfs 预处理树上每个点的 sizex\mathrm{size}_xsizex​；以及重儿子 sonx\mathrm{son}_xsonx​； 将根结点">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-03T07:38:04.934Z">
 <meta property="article:author" content="wbw121124">
+<meta property="article:tag" content="树链剖分">
+<meta property="article:tag" content="重链剖分">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wbwblog.github.io/">
+<link rel="canonical" href="https://wbwblog.github.io/2025/09/30/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wbwblog.github.io/2025/09/30/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/","path":"2025/09/30/树链剖分/","title":"树链剖分"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>wbw121124's blog - wbw121124的博客</title>
+<title>树链剖分 | wbw121124's blog</title>
   
 
 
@@ -178,7 +184,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">wbw121124's blog</h1>
+      <p class="site-title">wbw121124's blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">wbw121124的博客</p>
@@ -232,7 +238,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -245,6 +251,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text"> 树链剖分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text"> 树链剖分的常见方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.</span> <span class="nav-text"> 重链剖分的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.</span> <span class="nav-text"> 重链剖分的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text"> 例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7p3379"><span class="nav-number">1.4.1.</span> <span class="nav-text"> 洛谷P3379</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7p3384"><span class="nav-number">1.4.2.</span> <span class="nav-text"> 洛谷P3384</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7p1505"><span class="nav-number">1.4.3.</span> <span class="nav-text"> 洛谷P1505</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7p2590"><span class="nav-number">1.4.4.</span> <span class="nav-text"> 洛谷P2590</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -297,16 +304,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/30/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -320,13 +328,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
+      <meta itemprop="name" content="树链剖分 | wbw121124's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/09/30/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" class="post-title-link" itemprop="url">树链剖分</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          树链剖分<a href="https://github.com/wbwblog/wbwblog.github.io/edit/main/source/_posts/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -372,6 +380,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -395,8 +410,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="树链剖分"><a class="markdownIt-Anchor" href="#树链剖分"></a> 树链剖分</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="树链剖分"><a class="markdownIt-Anchor" href="#树链剖分"></a> 树链剖分</h1>
 <p>是一种将一棵树划分为若干条链的思想，划分后每个树上结点恰好在一条链中。</p>
 <p>而一条链又可以转化为一段连续的区间，从而将树上问题转换为序列问题。</p>
 <h2 id="树链剖分的常见方式"><a class="markdownIt-Anchor" href="#树链剖分的常见方式"></a> 树链剖分的常见方式</h2>
@@ -449,7 +463,6 @@ y, &amp; \text{否则}
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2590">P2590 [ZJOI2008] 树的统计</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> int32;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, m, root = <span class="number">1</span>, a[N], size[N], dep[N], fa[N],</span><br><span class="line">top[N], son[N], dfn[N], rdfn[N], id[N], cnt;</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;nbr[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node1</span> &#123;</span><br><span class="line">	<span class="type">bool</span> f1;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	node1 <span class="keyword">operator</span>+=(<span class="type">const</span> node1&amp; u)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span> = u;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>!() <span class="type">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> !f1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;tag[N &lt;&lt; <span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">	<span class="type">int</span> sum, maxi, len;</span><br><span class="line">	node <span class="keyword">operator</span>+(<span class="type">const</span> node&amp; u) <span class="type">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123; (sum + u.sum),<span class="built_in">max</span>(maxi, u.maxi),len + u.len &#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	node <span class="keyword">operator</span>+=(<span class="type">const</span> node&amp; u)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span> = *<span class="keyword">this</span> + u;</span><br><span class="line">	&#125;</span><br><span class="line">	node <span class="keyword">operator</span>+=(<span class="type">const</span> node1&amp; u)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (u.f1)</span><br><span class="line">			sum = u.x * len, maxi = u.x;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;tree[N &lt;&lt; <span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tree[x] = tree[x &lt;&lt; <span class="number">1</span>] + tree[x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">addtag</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> l, <span class="type">int</span> r, node1 val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tag[x] += val;</span><br><span class="line">	tree[x] += val;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!tag[x])</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">addtag</span>(x &lt;&lt; <span class="number">1</span>, l, mid, tag[x]);</span><br><span class="line">	<span class="built_in">addtag</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r, tag[x]);</span><br><span class="line">	tag[x] = &#123; <span class="number">0</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r)</span><br><span class="line">	&#123;</span><br><span class="line">		tree[x] = &#123; a[id[l]],a[id[l]],<span class="number">1</span> &#125;;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(x &lt;&lt; <span class="number">1</span>, l, mid);</span><br><span class="line">	<span class="built_in">build</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">	<span class="built_in">pushup</span>(x);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> qx, <span class="type">int</span> qy, node1 val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (qy &lt; l || qx &gt; r)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= l &amp;&amp; qy &gt;= r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">addtag</span>(x, l, r, val);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">pushdown</span>(x, l, r);</span><br><span class="line">	<span class="built_in">update</span>(x &lt;&lt; <span class="number">1</span>, l, mid, qx, qy, val);</span><br><span class="line">	<span class="built_in">update</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r, qx, qy, val);</span><br><span class="line">	<span class="built_in">pushup</span>(x);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">node <span class="title">query</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> qx, <span class="type">int</span> qy)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (qy &lt; l || qx &gt; r)</span><br><span class="line">		<span class="keyword">return</span> &#123; <span class="number">0</span>,(<span class="type">int</span>)<span class="number">-1e9</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= l &amp;&amp; qy &gt;= r)</span><br><span class="line">		<span class="keyword">return</span> tree[x];</span><br><span class="line">	<span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">pushdown</span>(x, l, r);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">query</span>(x &lt;&lt; <span class="number">1</span>, l, mid, qx, qy) +</span><br><span class="line">		<span class="built_in">query</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r, qx, qy);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> maxi = <span class="number">0</span>;</span><br><span class="line">	::size[x] = <span class="number">1</span>;</span><br><span class="line">	dep[x] = dep[fa] + <span class="number">1</span>;</span><br><span class="line">	::fa[x] = fa;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span>&amp; y : nbr[x])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">auto</span>&amp; nxt = y.first, &amp; w = y.second;</span><br><span class="line">		<span class="keyword">if</span> (nxt != fa)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">dfs</span>(nxt, x);</span><br><span class="line">			::size[x] += ::size[nxt];</span><br><span class="line">			<span class="keyword">if</span> (::size[nxt] &gt; maxi)</span><br><span class="line">				son[x] = nxt, maxi = ::size[nxt];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	dfn[x] = ++cnt;</span><br><span class="line">	id[cnt] = x;</span><br><span class="line">	<span class="keyword">if</span> (son[x])</span><br><span class="line">	&#123;</span><br><span class="line">		top[son[x]] = top[x];</span><br><span class="line">		<span class="built_in">dfs1</span>(son[x], x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span>&amp; y : nbr[x])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">auto</span>&amp; nxt = y.first, &amp; w = y.second;</span><br><span class="line">		<span class="keyword">if</span> (nxt != fa &amp;&amp; !top[nxt])</span><br><span class="line">		&#123;</span><br><span class="line">			top[nxt] = nxt;</span><br><span class="line">			<span class="built_in">dfs1</span>(nxt, x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	rdfn[x] = cnt;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lca</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (top[x] != top[y])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (dep[top[x]] &gt; dep[top[y]])</span><br><span class="line">			x = fa[top[x]];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			y = fa[top[y]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dep[x] &lt; dep[y] ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update_path</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, node1 val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (top[x] != top[y])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (dep[top[x]] &gt; dep[top[y]])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">update</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[top[x]], dfn[x], val);</span><br><span class="line">			x = fa[top[x]];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">update</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[top[y]], dfn[y], val);</span><br><span class="line">			y = fa[top[y]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (dep[x] &gt; dep[y])</span><br><span class="line">		<span class="built_in">swap</span>(x, y);</span><br><span class="line">	<span class="built_in">update</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[x], dfn[y], val);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">node <span class="title">query_path</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	node sum = &#123; <span class="number">0</span>,(<span class="type">int</span>)<span class="number">-1e9</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">while</span> (top[x] != top[y])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (dep[top[x]] &gt; dep[top[y]])</span><br><span class="line">		&#123;</span><br><span class="line">			sum += <span class="built_in">query</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[top[x]], dfn[x]);</span><br><span class="line">			x = fa[top[x]];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			sum += <span class="built_in">query</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[top[y]], dfn[y]);</span><br><span class="line">			y = fa[top[y]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (dep[x] &gt; dep[y])</span><br><span class="line">		<span class="built_in">swap</span>(x, y);</span><br><span class="line">	<span class="keyword">return</span> sum + <span class="built_in">query</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[x], dfn[y]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x, y, z = i;</span><br><span class="line">		cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">		nbr[x].<span class="built_in">push_back</span>(&#123; y,z &#125;);</span><br><span class="line">		nbr[y].<span class="built_in">push_back</span>(&#123; x,z &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		cin &gt;&gt; a[i];</span><br><span class="line">	<span class="built_in">dfs</span>(root, <span class="number">0</span>);</span><br><span class="line">	top[root] = root;</span><br><span class="line">	<span class="built_in">dfs1</span>(root, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">build</span>(<span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">	cin &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		string opt;</span><br><span class="line">		<span class="type">int</span> x, y;</span><br><span class="line">		cin &gt;&gt; opt &gt;&gt; x &gt;&gt; y;</span><br><span class="line">		<span class="keyword">if</span> (opt == <span class="string">&quot;CHANGE&quot;</span>)</span><br><span class="line">			<span class="built_in">update</span>(<span class="number">1</span>, <span class="number">1</span>, n, dfn[x], dfn[x], &#123; <span class="literal">true</span>,y &#125;);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="string">&quot;QMAX&quot;</span>)</span><br><span class="line">			cout &lt;&lt; <span class="built_in">query_path</span>(x, y).maxi &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="string">&quot;QSUM&quot;</span>)</span><br><span class="line">			cout &lt;&lt; <span class="built_in">query_path</span>(x, y).sum &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -457,971 +470,76 @@ y, &amp; \text{否则}
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/26/%E6%8D%A2%E6%A0%B9DP%EF%BC%88%E4%BA%8C%E6%AC%A1%E6%89%AB%E6%8F%8FDP%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAMDElEQVR4Ae3Ba3BU53kH8P/znrP31UqrXXSzQDcIhgGEsxBsxLS244bUaWp7aprE49jTxo79IaPMdJrOdKYf2k6/N009HafjhsSNSesmziSFgDG2sYdLAKfiDkLogpDE6rJarXZXe/acPe9TBUfKYknmsNrV7of9/agzxCizRqDMMoEyywTKLBMos0ygzDKBMssEyiwTKLNMoMwygTLLBMosEyizTKDMMhXFpitTM2JcF1OGSJqcYWbMISKFVJv0OLjSJVfZzSowoXhUFIOuTk3arkSVazExoCMJa+zCXSWb/eZnqvUNNsOPFUedIcZKYTIjjvO3bKemqJ/ByBUR+dHUkNlRnWqHVLFSqDPEKDwmM+w4ddN+VMMU8setVK7JPFyTfBBSQeFRZ4hRYDHb9R7nz2doHIXhoeA6/Qlfaj0KjDpDjIKRpPe7DgyrJ1F4q8X25vifkulAwagomLQSueT+UYLCWBE35ZnpysGNM8/btCAKQ6Aw4urN//O8kqAwVlAsM9rlekXzDKAwBApgWu0/7/6+gSRWnGbOdNlem3H3oQAE8i2pjlxw/cCEjiIxpH7Ovldz30S+CeSVIeKX3HtNSqOoDJk+b99rOqaQVwL5wyQvu/9TQwwlQJOJq94fQzGRPwL5M+I8GhMDKBkRY3Ck4h3kj0CeaOp4v/0ISkw/PtBdt5AnKnLipESLOIssQ44PH5JhlBoTAed/1OsPI0u/3KqxF/dORU6CdPMvXd/GJzBKkXEOrp8jy3dn9g3zetw7gTLLVBQDraqlHTtht/Oxozw2Shs20eomsJTvHMSdxIMd1NDIsSn57tvwVoiOP4THwxfOck83VpyKoqjyK099hdrWZW7e4LFRWtOk/u0/IpnQ3zmIO9GGTcrz3+T+Xvnu2+TxiEd3ix07zX//V7OnGytOoBi45ypPTmCOPPYBliBPn8QcHg3zYD+KR6DMMoEyywTKLBMos0yg9Ign96h/908UCKLECBQNYQliU7t47I/h8aLEUGeIce8axZVvu5/FcjidUFRoKZgmZnm8ACOZxCyHE6qKmSSYIQRcbkiJ1Axm2e2w2aGnYRjI1Xdn9g3L9bh3KopF05AtmcC8tIY0fkdKJBOYp+vQdRSJipyYUGNcQ4JtHh1Z7AophBJhMnSTkSUzY5OmMKEiJ9QZYuTKXZPY+vJJZOmo8dS7bSgNt2aM42NJZLn0o22xG37kSqDMMoEyywTKLFNReCfOXfjVsRNYwKao3/rq04GqSlgzMRV75b9+mjEzWODxXTt3tm9GgakovEu9/Rev92Ex4UgkUFUJa0YjkbPd17CYpvr6ne2bcVeE5aDOECNXdWszz/9LFFmq7apDIdwpmdL6hoaxgKoq97c0E6xi4Gr/QCZjYoHWxvs8LifulDZ5Us8gyxt/4xu65ECuVCyD3aE21K7C3Xh92FJbh2UjYGP7VljmBBpwB5vNxDKoWIa0lu65PgyAACLcRvgtxhLqA9UupwNLILsDQmCelKynkRMSAorKhg5AM9mQDMCUdkBBrlQsw/Xevj/782/ibiq83ob76ru7ewD821+/9NCm9VhCpmndL94/3nXhMoAHNm984pEO9UYPckIuD62qlYN9ABTmG3H9YlSLxUKAH7lSsQxCABJ39eILzz37zJ4Hd+3WdZ2Zf7D/3bdPdQUqKzr3fOn+pkZk+clb+4eGw0+3rgFw8OKVn0SjXw+tR5arN4a+9z8HIrH47h0P/MWXHiUiWKAQrfM5VjnVqyqWQ9nR8PfICRH+aE/X0Ysf4m56e/t/ffo3AzcGASQ17c33jkem40Njkfd+c/7pRzvsqorbEpr+3yfPfmPL/fdX++s87tU+7/9eurZz3Rq7quC2pJZ+9h/+uWfoVmQ6fvpyj9/n3dS6Bksgm508Xo5FMcepiIZa46MTQeRKRa62d0x8/mF3Y8u3kIVq6nk6Ck3DPFMiYwL4xh9sgxDf++kBzInGk5f7b27fsBa3EWFDW3OjrwK3NfoqNrQ1EwhzLvffjMaTmHP8/NWvfH4XJMMwAYaqQBGYRwDjE9rWx7d3TJw+FkROVORq5yNjHqfjs+tbkUXUNXIqybEoZknGdArpDOY5bZtbVp/r6cdtQojGmgDmeBz2F7/2lDxxGlICUIV48WtPyZ7LmNNYExBCSClxW1NtELEUNAPzHCp8LgjCLJsdho4FOh4ZO30siJwI5MTlNlc3J7EAzyTI68MsZkwmkc4gm2a8sKujfW0zALtN/c4zT9YH/MhGAsz4GDNIIEt9wP+dZ56021QA7WubX9jVAc1AtnQGk0kwAyCvj2cSWKCxOelym8iJipz4A2kiLMTxGNXdB9WGaBymxAKVDscP/+rlcCpZ4XF5nE5kUxQspCgwTcz56mO7vrxrWzyZqnN6kNCwkCmRSMNfAU8FjwxiASL4A+nUjBv3TiAnUhIWxcyjI2J1C9IZLEUz6gJ+j9OJO1GwlqcicNrwMaeNpyIUrMWdPE5nXcCPtIGlpDNidTOPDoMZi5GSkBOBnETGHGaGsBiORTkxLbZsgcOBRZkSC1Cln3xVPDEKnxN+N/xu+Jw8MUo+P1X6sZApsSiHQ7Rv4UScY1EsxsxQZMyBnKjIiWGIa1d8GzbHsBgeDwNO8dmtmIrx5CS0NFhinhBwufExAmwOqqqGosj+HkiJWXYVH5NS9l8Ta1qpKsBTkzDSYPyOjyAl5pGAw0GBalRVcl8/Q8MSeq74DEMgJypydfRQ3YbNMSyBpyb51+MUqKaqKgQDAGGeTYEqMC9jcGSUE3EsKmPIvm7yVlBFJdRKzKuSMEz8HiOt89g4X+2GXUGVG0t4/1AdcqUiVz1XfCePrnro4XEsyuvAZJInIjwRQTZBCHghCPeCE3FOxJFNMiIJSMYnEOB1YAknj67queJDrgSW4a03mj46EcCiVAWVbghCNkWgyg1BWD5BqHJDEcgmCJVuqAoW89GJwFtvNGEZqDPEWJ6t2yd3PzFS25DCQpKhGciYmGVT4VRBhGyGCZsCizImVAXZmKFlYGQwS1XgtEEQFhgdcb39i4azZ6qxPNQZYuRDXUOq9r6U3S43tk+1b4vCAhqaoP4wB328fjUE4VMw09WbNDHNLXXcGIQF5z7yXz5XpetidNgVHnEhH1TkSXjEFR5xARgPO9u3RWGFpgOgiWnS+uTaBlS4sKiUTj3DFEtiVlqHNR8crhu47kVeqci3gT7v6IirtiGFu+GWOqTSNJVEIiXO9nKVBwEfV7jgsIMAw6Skhsg0TUyDGbN8bm6ugwWjI64bvV7km4q8Y3x4pHbPcwO4K0XwpmYMjtPQOCTTVBJTScJiCFxfzS31EAQLPjxSy4y8EyiAM8eCkxMOWEHETTVy22d49So4bVhIFVxbJR9Yy20NEAQLJiccZ44FUQAqCiCToQM/a/z6S72wyGHj5lpuroWm00waegbMsCnsdMDjABHuxYGfNWYyhAJQURhdp6pDD01s3BLDPXHa2WnHMlw+X9l1qhqFIVAwb+5ticdsWEHxmO3NvS0oGIGCmY7ZXn+1zTQJK8I06fVX26ZjNhSMQCH1dlfse62VGYXGjH2vtfZ2V6CQVBRY16lqAM+80KcojMIwTdr3WmvXqWoUmIrC6zpVPZNUnnu51+U2kW+pGeX1V9u6L1ai8KgzxFgRNXXasy/1NjbNIH+Gbrh//P22sbATK4I6Q4yVoij8yBfDj/3JiN0hsTx6WhzZ3/D+oTrTJKwU6gwxVlZllfHYl0c+1zFhs0vcO0MXp48Fj+xviE3ZsLKoM8QoBm+FsX1X5HMdE7UNKVgzOuI6fTx45nggMW1DMVBniFFUX/jCjS8+PgibgKpAERCEeZJhSmRMGPLQr9YcPtyEolJRbIYGpHSk8HuE32JkMzQUnYoSxChNAmWWCZRZJlBsuq7AAl1XUGwCxXYr7IUFt8JeFJtAsQ0MVkajTnyqaNQ5MFiJYhMoNinplwfX4VP98uA6KQnFJlACzl2oOfROK5Zw8HDbuQs1KAEqSsPh91qGRyoe391bX5fAnFth7/5Da690B1AaqDPEKCW1q5LBYEoIHht3j455UEpUlJjRcc/ouAclSaDMMoEyywTKLBMos0ygzLL/B2MJr7gba26mAAAAAElFTkSuQmCC">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/09/26/%E6%8D%A2%E6%A0%B9DP%EF%BC%88%E4%BA%8C%E6%AC%A1%E6%89%AB%E6%8F%8FDP%EF%BC%89/" class="post-title-link" itemprop="url">换根DP（二次扫描DP）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-09-27 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-27T00:00:00+08:00">2025-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">树形结构</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="换根dp二次扫描dp"><a class="markdownIt-Anchor" href="#换根dp二次扫描dp"></a> 换根DP（二次扫描DP）</h1>
-<h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h2>
-<p>对于树形DP,若给定无根树，而问题的最优解与根节点相关，那么考虑换根DP。</p>
-<p>通常可以将枚举根节点跑DP的时间复杂度由 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 降为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/09/26/%E6%8D%A2%E6%A0%B9DP%EF%BC%88%E4%BA%8C%E6%AC%A1%E6%89%AB%E6%8F%8FDP%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/18/%E8%B5%9B%E5%89%8D%E8%AE%AD%E7%BB%832-%E8%BF%9E%E9%80%9A%E6%80%A7%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/09/18/%E8%B5%9B%E5%89%8D%E8%AE%AD%E7%BB%832-%E8%BF%9E%E9%80%9A%E6%80%A7%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">赛前训练2-连通性系列问题——总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-19T00:00:00+08:00">2025-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BF%9E%E9%80%9A%E6%80%A7%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">连通性问题</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="赛前训练2-连通性系列问题总结"><a class="markdownIt-Anchor" href="#赛前训练2-连通性系列问题总结"></a> 赛前训练2-连通性系列问题——总结</h1>
-<h2 id="a"><a class="markdownIt-Anchor" href="#a"></a> A</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2656">洛谷P2656</a></p>
-<h3 id="错误原因"><a class="markdownIt-Anchor" href="#错误原因"></a> 错误原因</h3>
-<p><code>double</code> 的精度不够，应开 <code>long double</code>。</p>
-<h3 id="正解"><a class="markdownIt-Anchor" href="#正解"></a> 正解</h3>
-<ol>
-<li>条边只有在环上时，才可能多次经过，且一定会经过足够次直到边权为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>；</li>
-<li>输入时维护 <code>x[i]</code>,<code>y[i]</code>,<code>w[i]</code>,<code>kw[i]</code> 其中 <code>kw[i]</code> 表示第i涤边迭代经过的总边权和；</li>
-<li>缩点建新DAG图，跑最长路。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/09/18/%E8%B5%9B%E5%89%8D%E8%AE%AD%E7%BB%832-%E8%BF%9E%E9%80%9A%E6%80%A7%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/17/918/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAMDElEQVR4Ae3Ba3BU53kH8P/znrP31UqrXXSzQDcIhgGEsxBsxLS244bUaWp7aprE49jTxo79IaPMdJrOdKYf2k6/N009HafjhsSNSesmziSFgDG2sYdLAKfiDkLogpDE6rJarXZXe/acPe9TBUfKYknmsNrV7of9/agzxCizRqDMMoEyywTKLBMos0ygzDKBMssEyiwTKLNMoMwygTLLBMosEyizTKDMMhXFpitTM2JcF1OGSJqcYWbMISKFVJv0OLjSJVfZzSowoXhUFIOuTk3arkSVazExoCMJa+zCXSWb/eZnqvUNNsOPFUedIcZKYTIjjvO3bKemqJ/ByBUR+dHUkNlRnWqHVLFSqDPEKDwmM+w4ddN+VMMU8setVK7JPFyTfBBSQeFRZ4hRYDHb9R7nz2doHIXhoeA6/Qlfaj0KjDpDjIKRpPe7DgyrJ1F4q8X25vifkulAwagomLQSueT+UYLCWBE35ZnpysGNM8/btCAKQ6Aw4urN//O8kqAwVlAsM9rlekXzDKAwBApgWu0/7/6+gSRWnGbOdNlem3H3oQAE8i2pjlxw/cCEjiIxpH7Ovldz30S+CeSVIeKX3HtNSqOoDJk+b99rOqaQVwL5wyQvu/9TQwwlQJOJq94fQzGRPwL5M+I8GhMDKBkRY3Ck4h3kj0CeaOp4v/0ISkw/PtBdt5AnKnLipESLOIssQ44PH5JhlBoTAed/1OsPI0u/3KqxF/dORU6CdPMvXd/GJzBKkXEOrp8jy3dn9g3zetw7gTLLVBQDraqlHTtht/Oxozw2Shs20eomsJTvHMSdxIMd1NDIsSn57tvwVoiOP4THwxfOck83VpyKoqjyK099hdrWZW7e4LFRWtOk/u0/IpnQ3zmIO9GGTcrz3+T+Xvnu2+TxiEd3ix07zX//V7OnGytOoBi45ypPTmCOPPYBliBPn8QcHg3zYD+KR6DMMoEyywTKLBMos0yg9Ign96h/908UCKLECBQNYQliU7t47I/h8aLEUGeIce8axZVvu5/FcjidUFRoKZgmZnm8ACOZxCyHE6qKmSSYIQRcbkiJ1Axm2e2w2aGnYRjI1Xdn9g3L9bh3KopF05AtmcC8tIY0fkdKJBOYp+vQdRSJipyYUGNcQ4JtHh1Z7AophBJhMnSTkSUzY5OmMKEiJ9QZYuTKXZPY+vJJZOmo8dS7bSgNt2aM42NJZLn0o22xG37kSqDMMoEyywTKLFNReCfOXfjVsRNYwKao3/rq04GqSlgzMRV75b9+mjEzWODxXTt3tm9GgakovEu9/Rev92Ex4UgkUFUJa0YjkbPd17CYpvr6ne2bcVeE5aDOECNXdWszz/9LFFmq7apDIdwpmdL6hoaxgKoq97c0E6xi4Gr/QCZjYoHWxvs8LifulDZ5Us8gyxt/4xu65ECuVCyD3aE21K7C3Xh92FJbh2UjYGP7VljmBBpwB5vNxDKoWIa0lu65PgyAACLcRvgtxhLqA9UupwNLILsDQmCelKynkRMSAorKhg5AM9mQDMCUdkBBrlQsw/Xevj/782/ibiq83ob76ru7ewD821+/9NCm9VhCpmndL94/3nXhMoAHNm984pEO9UYPckIuD62qlYN9ABTmG3H9YlSLxUKAH7lSsQxCABJ39eILzz37zJ4Hd+3WdZ2Zf7D/3bdPdQUqKzr3fOn+pkZk+clb+4eGw0+3rgFw8OKVn0SjXw+tR5arN4a+9z8HIrH47h0P/MWXHiUiWKAQrfM5VjnVqyqWQ9nR8PfICRH+aE/X0Ysf4m56e/t/ffo3AzcGASQ17c33jkem40Njkfd+c/7pRzvsqorbEpr+3yfPfmPL/fdX++s87tU+7/9eurZz3Rq7quC2pJZ+9h/+uWfoVmQ6fvpyj9/n3dS6Bksgm508Xo5FMcepiIZa46MTQeRKRa62d0x8/mF3Y8u3kIVq6nk6Ck3DPFMiYwL4xh9sgxDf++kBzInGk5f7b27fsBa3EWFDW3OjrwK3NfoqNrQ1EwhzLvffjMaTmHP8/NWvfH4XJMMwAYaqQBGYRwDjE9rWx7d3TJw+FkROVORq5yNjHqfjs+tbkUXUNXIqybEoZknGdArpDOY5bZtbVp/r6cdtQojGmgDmeBz2F7/2lDxxGlICUIV48WtPyZ7LmNNYExBCSClxW1NtELEUNAPzHCp8LgjCLJsdho4FOh4ZO30siJwI5MTlNlc3J7EAzyTI68MsZkwmkc4gm2a8sKujfW0zALtN/c4zT9YH/MhGAsz4GDNIIEt9wP+dZ56021QA7WubX9jVAc1AtnQGk0kwAyCvj2cSWKCxOelym8iJipz4A2kiLMTxGNXdB9WGaBymxAKVDscP/+rlcCpZ4XF5nE5kUxQspCgwTcz56mO7vrxrWzyZqnN6kNCwkCmRSMNfAU8FjwxiASL4A+nUjBv3TiAnUhIWxcyjI2J1C9IZLEUz6gJ+j9OJO1GwlqcicNrwMaeNpyIUrMWdPE5nXcCPtIGlpDNidTOPDoMZi5GSkBOBnETGHGaGsBiORTkxLbZsgcOBRZkSC1Cln3xVPDEKnxN+N/xu+Jw8MUo+P1X6sZApsSiHQ7Rv4UScY1EsxsxQZMyBnKjIiWGIa1d8GzbHsBgeDwNO8dmtmIrx5CS0NFhinhBwufExAmwOqqqGosj+HkiJWXYVH5NS9l8Ta1qpKsBTkzDSYPyOjyAl5pGAw0GBalRVcl8/Q8MSeq74DEMgJypydfRQ3YbNMSyBpyb51+MUqKaqKgQDAGGeTYEqMC9jcGSUE3EsKmPIvm7yVlBFJdRKzKuSMEz8HiOt89g4X+2GXUGVG0t4/1AdcqUiVz1XfCePrnro4XEsyuvAZJInIjwRQTZBCHghCPeCE3FOxJFNMiIJSMYnEOB1YAknj67queJDrgSW4a03mj46EcCiVAWVbghCNkWgyg1BWD5BqHJDEcgmCJVuqAoW89GJwFtvNGEZqDPEWJ6t2yd3PzFS25DCQpKhGciYmGVT4VRBhGyGCZsCizImVAXZmKFlYGQwS1XgtEEQFhgdcb39i4azZ6qxPNQZYuRDXUOq9r6U3S43tk+1b4vCAhqaoP4wB328fjUE4VMw09WbNDHNLXXcGIQF5z7yXz5XpetidNgVHnEhH1TkSXjEFR5xARgPO9u3RWGFpgOgiWnS+uTaBlS4sKiUTj3DFEtiVlqHNR8crhu47kVeqci3gT7v6IirtiGFu+GWOqTSNJVEIiXO9nKVBwEfV7jgsIMAw6Skhsg0TUyDGbN8bm6ugwWjI64bvV7km4q8Y3x4pHbPcwO4K0XwpmYMjtPQOCTTVBJTScJiCFxfzS31EAQLPjxSy4y8EyiAM8eCkxMOWEHETTVy22d49So4bVhIFVxbJR9Yy20NEAQLJiccZ44FUQAqCiCToQM/a/z6S72wyGHj5lpuroWm00waegbMsCnsdMDjABHuxYGfNWYyhAJQURhdp6pDD01s3BLDPXHa2WnHMlw+X9l1qhqFIVAwb+5ticdsWEHxmO3NvS0oGIGCmY7ZXn+1zTQJK8I06fVX26ZjNhSMQCH1dlfse62VGYXGjH2vtfZ2V6CQVBRY16lqAM+80KcojMIwTdr3WmvXqWoUmIrC6zpVPZNUnnu51+U2kW+pGeX1V9u6L1ai8KgzxFgRNXXasy/1NjbNIH+Gbrh//P22sbATK4I6Q4yVoij8yBfDj/3JiN0hsTx6WhzZ3/D+oTrTJKwU6gwxVlZllfHYl0c+1zFhs0vcO0MXp48Fj+xviE3ZsLKoM8QoBm+FsX1X5HMdE7UNKVgzOuI6fTx45nggMW1DMVBniFFUX/jCjS8+PgibgKpAERCEeZJhSmRMGPLQr9YcPtyEolJRbIYGpHSk8HuE32JkMzQUnYoSxChNAmWWCZRZJlBsuq7AAl1XUGwCxXYr7IUFt8JeFJtAsQ0MVkajTnyqaNQ5MFiJYhMoNinplwfX4VP98uA6KQnFJlACzl2oOfROK5Zw8HDbuQs1KAEqSsPh91qGRyoe391bX5fAnFth7/5Da690B1AaqDPEKCW1q5LBYEoIHht3j455UEpUlJjRcc/ouAclSaDMMoEyywTKLBMos0ygzLL/B2MJr7gba26mAAAAAElFTkSuQmCC">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/09/17/918/" class="post-title-link" itemprop="url">吾辈自强，勿忘九一八！</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-09-18 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-18T00:00:00+08:00">2025-09-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8E%86%E5%8F%B2/" itemprop="url" rel="index"><span itemprop="name">历史</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%94%BF%E6%B2%BB/" itemprop="url" rel="index"><span itemprop="name">政治</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%96%B0%E9%97%BB/" itemprop="url" rel="index"><span itemprop="name">新闻</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>741</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>1931年9月18日</p>
-<p>震惊中外的九一八事变爆发</p>
-<p>白山黑水间，中国人民奋起反抗</p>
-<p>揭开抗战14年的序幕</p>
-<p>也成为世界反法西斯战争的起点</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/09/17/918/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">网络流之最小割问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-09-17 23:59:59" itemprop="dateCreated datePublished" datetime="2025-09-17T23:59:59+08:00">2025-09-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BD%91%E7%BB%9C%E6%B5%81/" itemprop="url" rel="index"><span itemprop="name">网络流</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%80%E5%B0%8F%E5%89%B2/" itemprop="url" rel="index"><span itemprop="name">最小割</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>415</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="最小割问题"><a class="markdownIt-Anchor" href="#最小割问题"></a> 最小割问题</h1>
-<p>对于给定的网络流模型，其最小割是指删除边权和最小的边集，使得 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span> 不连通。</p>
-<p>最小割等于最大流，因为增广路的流量限制是由这些权值的边，方案不一定唯一。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/09/17/%E7%BD%91%E7%BB%9C%E6%B5%81%E4%B9%8B%E6%9C%80%E5%B0%8F%E5%89%B2%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/05/03/%E7%8A%B6%E5%8E%8BDP%EF%BC%88%E4%BA%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/05/03/%E7%8A%B6%E5%8E%8BDP%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">状压DP（二）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-05-03 21:00:00" itemprop="dateCreated datePublished" datetime="2025-05-03T21:00:00+08:00">2025-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/" itemprop="url" rel="index"><span itemprop="name">状态压缩</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="状压dp二"><a class="markdownIt-Anchor" href="#状压dp二"></a> 状压DP（二）</h1>
-<h2 id="洛谷p3092"><a class="markdownIt-Anchor" href="#洛谷p3092"></a> 洛谷P3092</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3092">P3092 [USACO13NOV] No Change G</a></p>
-<p>这道题，我们一般定义 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msub><mi>p</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">dp_{i,j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 为硬币使用了二进制下的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>，付到第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span> 个人的最多剩下多少钱。</p>
-<p>不过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mo>=</mo><mn>6</mn><mo separator="true">,</mo><mn>553</mn><mo separator="true">,</mo><mn>600</mn><mo separator="true">,</mo><mn>000</mn></mrow><annotation encoding="application/x-tex">2^{16}\times 10^5=6,553,600,000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mord">5</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，会超过空间限制。</p>
-<p>我们发现“最多剩下多少钱”没有用，因为可以通过使用情况算出。</p>
-<p>定义新的状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msub><mi>p</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">dp_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示硬币使用了二进制下的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 的最多能付到的人，可以通过前缀和加二分优化计算。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/05/03/%E7%8A%B6%E5%8E%8BDP%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/05/02/%E7%8A%B6%E5%8E%8BDP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/05/02/%E7%8A%B6%E5%8E%8BDP/" class="post-title-link" itemprop="url">状压DP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-05-02 20:11:28" itemprop="dateCreated datePublished" datetime="2025-05-02T20:11:28+08:00">2025-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/" itemprop="url" rel="index"><span itemprop="name">状态压缩</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="状压dp"><a class="markdownIt-Anchor" href="#状压dp"></a> 状压DP</h1>
-<blockquote>
-<p>状压 DP 是动态规划的一种，通过将状态压缩为整数来达到优化转移的目的。</p>
-<p>——<a target="_blank" rel="noopener" href="https://oi.wiki/dp/state/">OI-WIKI</a></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/05/02/%E7%8A%B6%E5%8E%8BDP/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2024/12/31/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/31/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>79</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/12/31/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2024/12/31/%E4%BA%8C%E5%88%86%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/31/%E4%BA%8C%E5%88%86%E5%9B%BE/" class="post-title-link" itemprop="url">二分图</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%BA%8C%E5%88%86%E5%9B%BE/" itemprop="url" rel="index"><span itemprop="name">二分图</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>367</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二分图"><a class="markdownIt-Anchor" href="#二分图"></a> 二分图</h1>
-<p>若一张无向图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">G</span></span></span></span>，可以将所有的点分成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个点集，且 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个点集内部没有连边，那么称 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">G</span></span></span></span> 可以划分为一张二分图。</p>
+<div class="post-copyright">
 <ul>
-<li>注意：二分图的划分不一定唯一，且不一定连通。有向图在实际问题中，也可以划分一分图</li>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>wbw121124
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://wbwblog.github.io/2025/09/30/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" title="树链剖分">https://wbwblog.github.io/2025/09/30/树链剖分/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<h2 id="二分图存在的充要条件"><a class="markdownIt-Anchor" href="#二分图存在的充要条件"></a> 二分图存在的充要条件</h2>
-<ul>
-<li>没有奇环</li>
-</ul>
-<h2 id="二分图的判定"><a class="markdownIt-Anchor" href="#二分图的判定"></a> 二分图的判定</h2>
-<p>染色法，任意选择没有访问的点开始 dfs，并且 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0,1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span> 交替染色，只要出现一条边的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个端点颜色相同，那么就不是二分图。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/12/31/%E4%BA%8C%E5%88%86%E5%9B%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wbw121124">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://blog.csdn.net/wbw121124">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">CSDN</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://cnblogs.com/wbw121124">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">cnblogs</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"><i class="fa fa-tag"></i> 树链剖分</a>
+              <a href="/tags/%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"><i class="fa fa-tag"></i> 重链剖分</a>
+          </div>
+
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/09/26/%E6%8D%A2%E6%A0%B9DP%EF%BC%88%E4%BA%8C%E6%AC%A1%E6%89%AB%E6%8F%8FDP%EF%BC%89/" rel="next" title="换根DP（二次扫描DP）">
+                  换根DP（二次扫描DP） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -1429,136 +547,9 @@ y, &amp; \text{否则}
 
 
 
-    
 
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2024/12/31/%E5%8C%BA%E9%97%B4dp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="data:image/png;base64,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">
-      <meta itemprop="name" content="wbw121124">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wbw121124's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/31/%E5%8C%BA%E9%97%B4dp/" class="post-title-link" itemprop="url">区间dp</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-03 15:38:04" itemprop="dateModified" datetime="2025-10-03T15:38:04+08:00">2025-10-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8C%BA%E9%97%B4dp/" itemprop="url" rel="index"><span itemprop="name">区间dp</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="区间dp"><a class="markdownIt-Anchor" href="#区间dp"></a> 区间DP</h1>
-<ul>
-<li>是一类子问题从短到长，而不是从左到右的动态规划问题。</li>
-</ul>
-<h2 id="状态"><a class="markdownIt-Anchor" href="#状态"></a> 状态</h2>
-<p>一般是：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msub><mi>p</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">dp_{i,j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 表示将区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[i,j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 的元素合并、拆分的最值、方案数。</p>
-<h2 id="转移"><a class="markdownIt-Anchor" href="#转移"></a> 转移</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> len = <span class="number">2</span>; len &lt;= n; len++)<span class="comment">//这问题</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i + len - <span class="number">1</span> &lt;= n; i++)<span class="comment">//状态</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; j; k++)<span class="comment">//决策点</span></span><br><span class="line">		dp[i][j] = 运算(dp[i][j], 状态转移方程);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/12/31/%E5%8C%BA%E9%97%B4dp/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="comments utterances-container"></div>
 </div>
   </main>
 
