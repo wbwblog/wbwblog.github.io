@@ -365,7 +365,7 @@
  * Original file: /gh/EmoryHuang/BlogBeautify@1.1/star.js
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
- */
+ *//*
 (function () {
 	let cnt = 0;
 	function t() {
@@ -465,7 +465,7 @@
 		, f = [];
 	t()
 }
-)();
+)();*/
 document.addEventListener('DOMContentLoaded', function () {
 	setInterval(() => {
 		//不同的日期显示不同的样式，200 天为黄色提示，400天为红色提示，可以自己定义。
@@ -898,6 +898,16 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 });
 
+<style>
+	:root {
+	  --content-bg-color: #fffe !important;
+	}
+	@media (prefers-color-scheme: dark) {
+	  :root {
+		  --content-bg-color: #333e !important;
+	  }
+	}
+</style>
 
 
 
