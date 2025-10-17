@@ -898,16 +898,3 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 });
 
-<style>
-	:root {
-	  --content-bg-color: #fffe !important;
-	}
-	@media (prefers-color-scheme: dark) {
-	  :root {
-		  --content-bg-color: #333e !important;
-	  }
-	}
-</style>
-
-
-
