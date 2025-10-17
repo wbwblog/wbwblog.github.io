@@ -1,4 +1,4 @@
-﻿(() => {
+﻿/*(() => {
 	const t = document.getElementById("canvas_nest");
 	if ("false" === t.getAttribute("mobile") && /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
 		return;
@@ -92,7 +92,7 @@
 		)(),
 		setTimeout(r, 100)
 }
-)();
+)();*/
 /**
  * Minified by jsDelivr using Terser v5.3.5.
  * Original file: /gh/BNDong/Cnblogs-Theme-SimpleMemory@1.3.4/src/script/RibbonsEffect.js
@@ -365,7 +365,7 @@
  * Original file: /gh/EmoryHuang/BlogBeautify@1.1/star.js
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
- *//*
+ */
 (function () {
 	let cnt = 0;
 	function t() {
@@ -465,7 +465,7 @@
 		, f = [];
 	t()
 }
-)();*/
+)();
 document.addEventListener('DOMContentLoaded', function () {
 	setInterval(() => {
 		//不同的日期显示不同的样式，200 天为黄色提示，400天为红色提示，可以自己定义。
@@ -897,4 +897,5 @@ document.addEventListener('DOMContentLoaded', function () {
 // setupLinkPreview();
 	
 });
+
 
