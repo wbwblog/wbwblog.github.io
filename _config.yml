@@ -256,3 +256,13 @@ anchor:
     # Also you can choose ForkAwesome, but that's another story.
     font: FontAwesome
     content: \f0c1 # CSS content for FontAwesome & ForkAwesome.
+
+
+CloudCalendar:
+  enable: true
+  language: zh-CN
+  single: true
+  root: /
+  calendarCdn: //cdn.jsdmirror.cn/gh/theme-next/theme-next-calendar/calendar.min.js
+  langCdn: //cdn.jsdmirror.cn/gh/theme-next/theme-next-calendar/languages.min.js
+  disableSidebar: true
