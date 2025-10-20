@@ -105,10 +105,10 @@ menu:
   about: /about/ || fa fa-user
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
+  archives: /archives/ || fa fa-archivefa-book
+  schedule: /schedule/ || fa fa-ca
   Docs:
-    default: /wbwConsoleGUI/ || fa fa-book
-  # schedule: /schedule/ || fa fa-calendar
+    default: /wbwConsoleGUI/ || fa lendar
   # sitemap: /sitemap.xml || fa fa-sitemap
   # commonweal: /404/ || fa fa-heartbeat
   # search: /search/ || fa fa-search
@@ -1013,6 +1013,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
