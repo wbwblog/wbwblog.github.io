@@ -1014,15 +1014,11 @@ giscus:
   loading: lazy
   crossorigin: anonymous
 
-
-
-
-
-
-
-
-
-
-
-
-
+CloudCalendar:
+  enable: true
+  language: zh-CN
+  single: true
+  root: /calendar/
+  calendarCdn: //cdn.jsdmirror.cn/gh/theme-next/theme-next-calendar/calendar.min.js
+  langCdn: //cdn.jsdmirror.cn/gh/theme-next/theme-next-calendar/languages.min.js
+  #disableSidebar: false
