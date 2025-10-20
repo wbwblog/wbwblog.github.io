@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="wbw121124&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-02T12:11:28.000Z">
-<meta property="article:modified_time" content="2025-10-20T05:43:36.343Z">
+<meta property="article:modified_time" content="2025-10-20T05:44:23.247Z">
 <meta property="article:author" content="wbw121124">
 <meta name="twitter:card" content="summary">
 
@@ -289,7 +289,10 @@
   <div class="cc-license animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
-
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
         </div>
       </div>
     </div>
@@ -479,6 +482,23 @@ function dark() { window.requestAnimationFrame = window.requestAnimationFrame ||
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<!-- calendar widget -->
+{% if theme.CloudCalendar.enable %}
+    <script src="{{ theme.CloudCalendar.calendarCdn }}"></script>
+    <script src="{{ theme.CloudCalendar.langCdn }}"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('{{ theme.CloudCalendar.language }}',
+            $.extend(
+                '', {
+                    single:{{ theme.CloudCalendar.single }},
+                    root:'{{ theme.CloudCalendar.root }}'
+                }
+            )
+        );
+    });
+    </script>
+{% endif %}
 <script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"wbwblog/wbwblog.github.io","issue_term":"pathname","theme":"github-dark"}</script>
 <script src="/js/third-party/comments/utterances.js" defer></script>
 
