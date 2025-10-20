@@ -132,10 +132,10 @@ subtitle_typing:
   pause_before_delete: 1000
   pause_before_type: 50
   subtitles:
-    - Welcome to my blog
-    - Enjoy your stay
-    - Have a great day!
-    - Where there is a will, there is a way.
+		- Welcome to my blog
+		- Enjoy your stay
+		- Have a great day!
+		- Where there is a will, there is a way.
 		- Hope for the best, plan for the worst.
 		- Wisdom is more precious than wealth.
 		- Action speaks louder than words.
@@ -146,7 +146,7 @@ subtitle_typing:
 		- A journey of a thousand miles begins with a single step.
 		- The early bird catches the worm.
 		- Nothing is impossible to a willing heart.
-		- Don't put off till tomorrow what you can do today.
+		- "Don't put off till tomorrow what you can do today."
 		- Every cloud has a silver lining.
 		- Haste makes waste.
 		- Better late than never.
@@ -154,7 +154,7 @@ subtitle_typing:
 		- Live and learn.
 		- Health is wealth.
 		- First impressions are the most lasting.
-		- One man's meat is another man's poison.
+		- "One man's meat is another man's poison."
 		- A friend in need is a friend indeed.
 		- Life is not all roses.
 		- Think twice before you act.
@@ -174,16 +174,16 @@ subtitle_typing:
 		- Yesterday will not be called again.
 		- Men will die for wealth, as bird for food.
 		- Success belongs to the persevering.
-		- The man who has made up his mind to win will never say \impossible\.
+		- 'The man who has made up his mind to win will never say "impossible".'
 		- Nothing venture, nothing have.
-		- If you fail, don't forget to learn your lesson.
+		- "If you fail, don't forget to learn your lesson."
 		- No pain, no gain
 		- We can only move forward, forward, by any means necessary to move forward.
 		- Your fearlessness comes from ignorance.
 		- Intelligence lies in diligence, and genius in accumulation.
 		- Never be satisfied with learning; never be tired of teaching.
 		- Books are the ladder of human progress.
-		- An inch of time is an inch of gold, but you can't buy time with gold.
+		- "An inch of time is an inch of gold, but you can't buy time with gold."
 
 # 分类归档
 category_generator:
