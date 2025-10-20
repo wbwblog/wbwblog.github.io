@@ -339,7 +339,7 @@ tagcloud:
 # Google Calendar
 # Share your recent schedule to others via calendar page.
 calendar:
-  calendar_id: 2991549073@qq.com # Your Google account E-Mail
+  calendar_id: 36c9f08e8cd6417ddc09e1a9de39da223327ee3b3381fbfc4875f73451633106@group.calendar.google.com # Your Google account E-Mail
   api_key: AIzaSyDAsPALpJPnp4dNIN4guia6qQssOJweUdI
   orderBy: startTime
   showLocation: false
@@ -1013,6 +1013,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
