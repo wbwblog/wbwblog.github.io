@@ -42,7 +42,6 @@
     "lodash.assignin": "^4.2.0",
     "markdown-it-katex": "^2.0.3",
     "nvm": "^0.0.4",
-    "hexo-related-posts": "^1.6.2",
-    "hexo-generator-calendar": "github:theme-next/theme-next-calendar"
+    "hexo-related-posts": "^1.6.2"
   }
 }
