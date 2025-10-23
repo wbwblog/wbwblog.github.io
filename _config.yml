@@ -259,7 +259,7 @@ anchor:
 
 
 CloudCalendar:
-  enable: true
+  enable: false
   language: zh-CN
   single: true
   root: /
