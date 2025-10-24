@@ -21,7 +21,7 @@ minify: false
 custom_file_path:
   head: source/_data/head.njk
   # header: source/_data/header.njk
-  sidebar: source/_data/sidebar.njk
+  # sidebar: source/_data/sidebar.njk
   # postMeta: source/_data/post-meta.njk
   # postBodyStart: source/_data/post-body-start.njk
   # postBodyEnd: source/_data/post-body-end.njk
@@ -108,7 +108,12 @@ menu:
   archives: /archives/ || fa fa-archive
   schedule: /schedule/ || fa fa-calendar
   Docs:
-    default: /wbwConsoleGUI/ || fa fa-book lendar
+    default:  || fa fa-book lendar
+    wbwConsoleGUI: /wbwConsoleGUI/
+    i18n:
+      cn: 文档
+      zh: 文档
+      zh-cn: 文档
   # sitemap: /sitemap.xml || fa fa-sitemap
   # commonweal: /404/ || fa fa-heartbeat
   # search: /search/ || fa fa-search
@@ -1013,6 +1018,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
