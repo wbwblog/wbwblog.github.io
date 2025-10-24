@@ -108,7 +108,7 @@ menu:
   archives: /archives/ || fa fa-archive
   schedule: /schedule/ || fa fa-calendar
   Docs:
-    default:  || fa fa-book lendar
+    default: /about/ || fa fa-book lendar
     wbwConsoleGUI: /wbwConsoleGUI/
     i18n:
       cn: 文档
@@ -1018,6 +1018,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
