@@ -26,21 +26,21 @@
     <meta name="description" content="平衡树 全称是二叉搜索平衡树 二叉搜索树：对于一棵二叉树，每个节点有权值 valvalval，任意节点 xxx 的左子树的权值小于等于 valxval_xvalx​，右子树反之。 二叉搜索树的优点：  具有单调性，可以 log2log_2log2​ 的时间查找。 二叉搜索树的中序遍历是单调不减的，可以将下标当做权值，这样一个序列可以映射到一棵二叉搜索树。  为什么需要平衡树？  一个序列对应的二">
 <meta property="og:type" content="article">
 <meta property="og:title" content="平衡树">
-<meta property="og:url" content="https://wbwblog.github.io/2019/12/31/%E5%B9%B3%E8%A1%A1%E6%A0%91/index.html">
+<meta property="og:url" content="https://wbwblog.github.io/2025/11/29/%E5%B9%B3%E8%A1%A1%E6%A0%91/index.html">
 <meta property="og:site_name" content="wbw121124&#39;s blog">
 <meta property="og:description" content="平衡树 全称是二叉搜索平衡树 二叉搜索树：对于一棵二叉树，每个节点有权值 valvalval，任意节点 xxx 的左子树的权值小于等于 valxval_xvalx​，右子树反之。 二叉搜索树的优点：  具有单调性，可以 log2log_2log2​ 的时间查找。 二叉搜索树的中序遍历是单调不减的，可以将下标当做权值，这样一个序列可以映射到一棵二叉搜索树。  为什么需要平衡树？  一个序列对应的二">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-24T05:42:40.080Z">
+<meta property="article:published_time" content="2025-11-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-30T03:42:11.657Z">
 <meta property="article:author" content="wbw121124">
 <meta property="article:tag" content="平衡树">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wbwblog.github.io/2019/12/31/%E5%B9%B3%E8%A1%A1%E6%A0%91/">
+<link rel="canonical" href="https://wbwblog.github.io/2025/11/29/%E5%B9%B3%E8%A1%A1%E6%A0%91/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wbwblog.github.io/2019/12/31/%E5%B9%B3%E8%A1%A1%E6%A0%91/","path":"2019/12/31/平衡树/","title":"平衡树"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wbwblog.github.io/2025/11/29/%E5%B9%B3%E8%A1%A1%E6%A0%91/","path":"2025/11/29/平衡树/","title":"平衡树"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>平衡树 | wbw121124's blog</title>
@@ -314,7 +314,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2019/12/31/%E5%B9%B3%E8%A1%A1%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="https://wbwblog.github.io/2025/11/29/%E5%B9%B3%E8%A1%A1%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="data:image/png;base64,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">
@@ -342,15 +342,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-01T00:00:00+08:00">2020-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-24 13:42:40" itemprop="dateModified" datetime="2025-10-24T13:42:40+08:00">2025-10-24</time>
+      <time title="创建时间：2025-11-30 00:00:00 / 修改时间：11:42:11" itemprop="dateCreated datePublished" datetime="2025-11-30T00:00:00+08:00">2025-11-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -466,6 +460,7 @@
 </blockquote>
 <p>和前驱后继减，即可保证最小。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x;</span><br><span class="line">		cin &gt;&gt; x;</span><br><span class="line">		<span class="built_in">insert</span>(root, x);</span><br><span class="line">		<span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">			sum += x;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (tree[root].size == <span class="built_in">find_rank</span>(root, x))</span><br><span class="line">			sum += <span class="built_in">abs</span>(<span class="built_in">prev</span>(root, x) - x);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">find_rank</span>(root, x) == <span class="number">1</span>)</span><br><span class="line">			sum += <span class="built_in">abs</span>(<span class="built_in">suf</span>(root, x) - x);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			sum += <span class="built_in">min</span>(<span class="built_in">abs</span>(<span class="built_in">prev</span>(root, x) - x), <span class="built_in">abs</span>(<span class="built_in">suf</span>(root, x) - x));</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类似题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2286">P2286 宠物收养场</a></p>
 <h4 id="洛谷p3224"><a class="markdownIt-Anchor" href="#洛谷p3224"></a> 洛谷P3224</h4>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3224">P3224 永无乡</a></p>
 <blockquote>
@@ -530,7 +525,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://wbwblog.github.io/2019/12/31/%E5%B9%B3%E8%A1%A1%E6%A0%91/" title="平衡树">https://wbwblog.github.io/2019/12/31/平衡树/</a>
+      <a href="https://wbwblog.github.io/2025/11/29/%E5%B9%B3%E8%A1%A1%E6%A0%91/" title="平衡树">https://wbwblog.github.io/2025/11/29/平衡树/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -583,11 +578,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/12/31/%E8%BF%9E%E9%80%9A%E6%80%A7%E9%97%AE%E9%A2%98/" rel="prev" title="连通性问题">
-                  <i class="fa fa-angle-left"></i> 连通性问题
-                </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2025/10/02/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="next" title="树链剖分">
+                  树链剖分 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
