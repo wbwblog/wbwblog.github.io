@@ -43,6 +43,6 @@
     "markdown-it-katex": "^2.0.3",
     "nvm": "^0.0.4",
     "hexo-related-posts": "^1.6.2",
-    "hexo-tag-cloud": "2.0.*"
+    "hexo-tag-cloud": "2.1.*"
   }
 }
