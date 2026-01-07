@@ -31,6 +31,7 @@ custom_file_path:
   # mixin: source/_data/mixins.styl
   # style: source/_data/styles.styl
   # js: source/js/pen.js
+  layout: source/_data/layouts
 
 
 # ---------------------------------------------------------------
@@ -1014,6 +1015,7 @@ giscus:
   lang: zh-CN
   loading: lazy
   crossorigin: anonymous
+
 
 
 
